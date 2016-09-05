@@ -1,0 +1,48 @@
+2016-08-22 09:15:05,258 [ERROR]  (PageParser.java.getHtmlPage:88) - Connect to 10.1.180.131:80 [/10.1.180.131] failed: connect timed out
+2016-08-22 09:19:26,190 [ERROR]  (PageParser.java.getHtmlPage:88) - www.example.org
+2016-08-22 09:19:32,692 [ERROR]  (PageParser.java.getHtmlPage:88) - home.dcits.com
+2016-08-22 09:21:11,665 [ERROR]  (PageParser.java.getHtmlPage:88) - java.net.UnknownHostException: www.example.org
+2016-08-22 09:21:22,749 [ERROR]  (PageParser.java.getHtmlPage:88) - java.net.UnknownHostException: home.dcits.com
+2016-08-22 09:22:53,568 [ERROR]  (PageParser.java.getHtmlPage:88) - org.apache.http.conn.ConnectTimeoutException: Connect to 10.1.180.131:80 [/10.1.180.131] failed: connect timed out
+2016-08-22 09:54:21,180 [ERROR]  (PageParser.java.getHtmlPage:88) - org.apache.http.conn.ConnectTimeoutException: Connect to 10.1.180.131:80 [/10.1.180.131] failed: connect timed out
+2016-08-22 10:41:56,086 [ERROR]  (PageParser.java.getHtmlPage:85) - org.apache.http.conn.ConnectTimeoutException: Connect to 10.1.180.131:80 [/10.1.180.131] failed: connect timed out
+2016-08-22 13:50:27,079 [ERROR]  (PageParser.java.getHtmlPage:77) - java.net.UnknownHostException: home.dcits.com
+2016-08-22 16:39:41,100 [ERROR]  (PageParser.java.getHtmlPage:77) - javax.net.ssl.SSLException: hostname in certificate didn't match: <www.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-22 16:55:14,514 [ERROR]  (PageParser.java.getHtmlPage:77) - javax.net.ssl.SSLException: hostname in certificate didn't match: <www.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-22 16:56:24,944 [ERROR]  (PageParser.java.getHtmlPage:77) - javax.net.ssl.SSLException: hostname in certificate didn't match: <www.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-22 17:03:07,106 [ERROR]  (PageParser.java.getHtmlPage:77) - javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+2016-08-22 17:03:25,011 [ERROR]  (PageParser.java.getHtmlPage:77) - javax.net.ssl.SSLException: hostname in certificate didn't match: <www.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-22 17:07:16,412 [ERROR]  (PageParser.java.getHtmlPage:77) - javax.net.ssl.SSLException: hostname in certificate didn't match: <www.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-22 17:07:59,996 [ERROR]  (PageParser.java.getHtmlPage:80) - javax.net.ssl.SSLException: hostname in certificate didn't match: <www.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-23 14:29:53,329 [ERROR]  (PageParser.java.getHtmlPage:83) - javax.net.ssl.SSLException: hostname in certificate didn't match: <zhuanlan.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-23 14:30:07,766 [ERROR]  (PageParser.java.getHtmlPage:83) - javax.net.ssl.SSLException: hostname in certificate didn't match: <zhuanlan.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-23 14:30:18,839 [ERROR]  (PageParser.java.getHtmlPage:83) - javax.net.ssl.SSLException: hostname in certificate didn't match: <zhuanlan.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-23 14:30:19,104 [ERROR]  (PageParser.java.getHtmlPage:83) - javax.net.ssl.SSLException: hostname in certificate didn't match: <zhuanlan.zhihu.com> != <*.smartisan.com> OR <*.smartisan.com> OR <smartisan.com>
+2016-08-23 14:32:45,387 [ERROR]  (PageParser.java.getHtmlPage:83) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 14:33:27,341 [ERROR]  (PageParser.java.getHtmlPage:83) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 14:33:36,930 [ERROR]  (PageParser.java.getHtmlPage:83) - request webpage error: https://zhuanlan.zhihu.com/p/21824381
+2016-08-23 14:59:57,702 [ERROR]  (PageParser.java.getHtmlPage:82) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 15:00:10,700 [ERROR]  (PageParser.java.getHtmlPage:82) - request webpage error: https://zhuanlan.zhihu.com/p/21824381
+2016-08-23 15:00:46,718 [ERROR]  (PageParser.java.getHtmlPage:82) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 15:07:02,488 [ERROR]  (PageParser.java.getHtmlPage:82) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 19:09:43,813 [ERROR]  (PageParser.java.getHtmlPage:82) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 20:47:07,579 [ERROR]  (PageParser.java.getHtmlPage:84) - request webpage error: http://zhuanlan.zhihu.com/100offer/19788061
+2016-08-23 20:47:16,336 [ERROR]  (PageParser.java.getHtmlPage:84) - request webpage error: http://www.zhihu.com/people/gongxuyang
+2016-08-24 09:05:35,245 [ERROR]  (PageParser.java.getHtmlPage:84) - request webpage error: http://home.dcits.com/
+2016-08-29 10:17:00,297 [ERROR]  (PageParser.java.getHtmlPage:119) - request webpage error: https://www.zhihu.com/question/26488686
+2016-08-29 10:17:03,761 [ERROR]  (PageParser.java.getHtmlPage:119) - request webpage error: https://www.zhihu.com/question/26488686
+2016-08-29 10:29:02,186 [ERROR]  (PageParser.java.getHtmlPage:119) - request webpage error: http://www.douban.com/share/service?name=%E5%8F%91%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8F%AF%E7%88%B1%E7%9A%84%E7%BD%91%E7%AB%99%EF%BC%8C%E6%8D%AE%E8%AF%B4%E8%BF%99%E9%87%8C%E6%98%AF%E5%88%98%E7%9C%8B%E5%B1%B1%E7%9A%84%E6%96%B0%E5%AE%B6%E5%92%8C%E6%88%91%E4%B8%80%E8%B5%B7%E6%9D%A5%E5%8F%82%E8%A7%82%EF%BC%9A&image=https%3A%2F%2Fliukanshan.zhihu.com%2Fimages%2Fshare.png&href=https%3A%2F%2Fliukanshan.zhihu.com
+2016-08-29 17:51:20,265 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com
+2016-08-29 17:52:00,548 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com
+2016-08-30 10:11:01,999 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com
+2016-08-31 20:24:54,310 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/notice/getNoticeInfoForPage?page=61
+2016-08-31 20:24:54,410 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/knowFile/getKnowFileDetails?code=KF-0000000033
+2016-08-31 20:24:54,441 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/knowFile/getKnowFileDetails?code=KF-0000000147
+2016-09-02 14:08:32,610 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/menu/getServiceItem?code=SI-0019
+2016-09-02 14:08:32,610 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/menu/getServiceItem?code=SI-0010
+2016-09-02 14:08:32,610 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/menu/getServiceItem?code=SI-0017
+2016-09-02 14:08:32,648 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/menu/getServiceItem?code=SI-0022
+2016-09-02 14:08:32,754 [ERROR]  (PageParser.java.getHtmlPage:120) - request webpage error: http://home.dcits.com/itcenter/menu/getServiceItem?code=SI-0023
+2016-09-02 21:00:41,953 [ERROR]  (PageParser.java.getHtmlPage:135) - request webpage error: http://home.dcits.com
+2016-09-02 21:03:27,118 [ERROR]  (PageParser.java.getHtmlPage:137) - request webpage error: http://home.dcits.com/itcenter/notice/getNoticeDetails?code=1633
+2016-09-02 21:03:27,120 [ERROR]  (PageParser.java.getHtmlPage:137) - request webpage error: http://home.dcits.com/dcSelf
