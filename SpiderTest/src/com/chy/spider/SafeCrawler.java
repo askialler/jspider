@@ -214,7 +214,7 @@ public class SafeCrawler {
 		}
 		LinkFilter filter = new StartWithFilter("http://home.dcits.com");
 		LinkFilter filter2 = new RegexFilter("http://home.dcits.com");
-		SafeCrawler crawler = new SafeCrawler(seed, 2, 10, filter);
+		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter);
 		crawler.start();
 
 		log.info("main-Thread is done ..............................................");

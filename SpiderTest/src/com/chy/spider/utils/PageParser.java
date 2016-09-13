@@ -17,10 +17,14 @@ import javax.net.ssl.SSLContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.config.Registry;
@@ -98,8 +102,8 @@ public class PageParser {
 
 		HttpGet httpget = new HttpGet(uri);
 //		httpget.setURI(uri);
-		StringBuilder sb = new StringBuilder();
-		BufferedInputStream ins = null;
+//		StringBuilder sb = new StringBuilder();
+//		BufferedInputStream ins = null;
 		
 
 //		httpget.addHeader(new BasicHeader("Connection", "Keep-Alive"));
@@ -107,45 +111,81 @@ public class PageParser {
 //		for(Header hd:reqhs){
 //			log.info("request header: "+hd.toString());
 //		}
-		try {
-			HttpResponse resp = PageParser.getHttpClient().execute(httpget);
+		ResponseHandler<String> rh=new ResponseHandler<String>() {
 			
-			if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				ins = new BufferedInputStream(resp
-						.getEntity().getContent());
+			@Override
+			public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+
+				StatusLine statusLine=response.getStatusLine();
+				if(statusLine.getStatusCode() >=400){
+					throw new HttpResponseException(statusLine.getStatusCode(), statusLine.getReasonPhrase());
+				}
+				HttpEntity entity=response.getEntity();
+				if(entity==null){
+					throw new ClientProtocolException("response contains no content");
+				}
+				
+				StringBuilder sb = new StringBuilder();
+				BufferedInputStream ins = null;
+				ins = new BufferedInputStream(entity.getContent());
 
 				int temp = 0;
 				byte[] buffer = new byte[1024];
 				while (-1 != (temp = ins.read(buffer, 0, 1024))) {
 					sb.append(new String(buffer, 0, temp, "utf-8"));
 				}
-//				Header[] hs= resp.getAllHeaders();
-//				for(Header hd:hs){
-//					log.info(hd.toString());
-//				}
 				
+				return sb.toString();
 			}
-
+		};
+		String content=null;
+		try {
+			content=PageParser.getHttpClient().execute(httpget,rh);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// e.printStackTrace();
-			if (log.isErrorEnabled()) {
-				log.error("request webpage error: " + uri);
-				e.printStackTrace();
-			}
-		} finally {
-			if (log.isDebugEnabled()) {
-				log.debug("gethtmlpage end, httpget abort...");
-			}
-			try {
-				ins.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			httpget.abort();
+			e.printStackTrace();
 		}
-		return sb.toString();
+		
+//		try {
+//			HttpResponse resp = PageParser.getHttpClient().execute(httpget);
+//			
+//			if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+//				ins = new BufferedInputStream(resp
+//						.getEntity().getContent());
+//
+//				int temp = 0;
+//				byte[] buffer = new byte[1024];
+//				while (-1 != (temp = ins.read(buffer, 0, 1024))) {
+//					sb.append(new String(buffer, 0, temp, "utf-8"));
+//				}
+////				Header[] hs= resp.getAllHeaders();
+////				for(Header hd:hs){
+////					log.info(hd.toString());
+////				}
+//				
+//			}
+//
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// e.printStackTrace();
+//			if (log.isErrorEnabled()) {
+//				log.error("request webpage error: " + uri);
+//				e.printStackTrace();
+//			}
+//		} finally {
+//			if (log.isDebugEnabled()) {
+//				log.debug("gethtmlpage end, httpget abort...");
+//			}
+//			try {
+//				ins.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			httpget.abort();
+//		}
+		return content;
 	}
 
 //	public static ArrayList<URI> parseWebPage(String html) {
