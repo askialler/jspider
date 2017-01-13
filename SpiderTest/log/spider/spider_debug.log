@@ -6,3 +6,41 @@
 2016-09-05 19:34:34,586 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:163) - visited table add uri(2): http://home.dcits.com/itcenter/notice/getNoticeDetails?code=1633
 2016-09-05 19:34:34,602 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-1 is done ......
 2016-09-05 19:34:34,623 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-3 is done ......
+2016-09-13 09:34:35,876 [INFO ] main (SafeCrawler.java.<init>:109) - seedUrl:http://home.dcits.com maxDepth:5 maxVisitNum:30
+2016-09-13 09:34:35,915 [INFO ] main (SafeCrawler.java.<init>:119) - seedUrl:http://home.dcits.com maxDepth:5 maxVisitNum:30
+2016-09-13 09:34:35,968 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(1): http://home.dcits.com
+2016-09-13 09:34:35,970 [INFO ] main (SafeCrawler.java.main:220) - main-Thread is done ..............................................
+2016-09-13 09:34:38,221 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(2): http://home.dcits.com/dcSelf
+2016-09-13 09:34:38,221 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(2): http://home.dcits.com/itcenter/notice/getNoticeDetails?code=1633
+2016-09-13 09:34:38,265 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/user/toLogin?url=
+2016-09-13 09:34:38,266 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itim/self/Home.do
+2016-09-13 09:34:38,273 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter
+2016-09-13 09:34:38,278 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyApplyDraft
+2016-09-13 09:34:38,286 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyQuUnAnswered
+2016-09-13 09:34:38,289 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyAccountAndFee?type=wdzh
+2016-09-13 09:34:38,291 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyTasks?page=1
+2016-09-13 09:34:38,308 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/flowAgent/user/userPage
+2016-09-13 09:34:38,311 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyUnAnswered
+2016-09-13 09:34:38,312 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyAccountAndFee?type=wwwfycx
+2016-09-13 09:34:38,340 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyAccountAndFee?type=zjfycx
+2016-09-13 09:34:38,341 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/getMyAccountAndFee?type=sjfycx
+2016-09-13 09:34:38,362 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/myIT/isServiceEngineer
+2016-09-13 09:34:38,363 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:163) - visited table add uri(3): http://home.dcits.com/itcenter/aboutUs
+2016-09-13 09:34:38,410 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/menu/getAllMenuForClient
+2016-09-13 09:34:38,411 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/static/doc/its.html
+2016-09-13 09:34:38,414 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/notice/getTrainInfoForPage
+2016-09-13 09:34:38,414 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/user/desk/toHelp?type=34
+2016-09-13 09:34:38,422 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/user/desk/toHelp?type=35
+2016-09-13 09:34:38,450 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/user/desk/toHelp?type=36
+2016-09-13 09:34:38,458 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/user/desk/toHelp?type=37
+2016-09-13 09:34:38,486 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/user/desk/toHelp?type=38
+2016-09-13 09:34:38,509 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/notice/getNoticeInfoForPage
+2016-09-13 09:34:38,518 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/knowFile/getKnowFileInfoForPage?knowFileTypeName=IT%E7%AE%A1%E7%90%86%E5%88%B6%E5%BA%A6
+2016-09-13 09:34:38,520 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/knowFile/getKnowFileInfoForPage?knowFileTypeName=IT%E7%AE%A1%E7%90%86%E5%B7%A5%E4%BD%9C%E4%BD%93%E7%B3%BB
+2016-09-13 09:34:38,533 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:163) - visited table add uri(4): http://home.dcits.com/itcenter/knowFile/getKnowFileInfoForPage?knowFileTypeName=IT%E8%BF%9D%E8%A7%84%E9%80%9A%E6%8A%A5
+2016-09-13 09:34:38,538 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:163) - visited table add uri(5): http://home.dcits.com/itcenter/
+2016-09-13 09:34:38,544 [INFO ] pool-1-thread-5 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-5 is done ......
+2016-09-13 09:34:38,556 [INFO ] pool-1-thread-4 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-4 is done ......
+2016-09-13 09:34:38,743 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-3 is done ......
+2016-09-13 09:34:38,748 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-2 is done ......
+2016-09-13 09:34:38,840 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-1 is done ......
