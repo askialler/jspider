@@ -94,9 +94,9 @@ public class Crawler {
 	 * @param seedUrl
 	 *            the first url
 	 * @param maxDepth
-	 *            Ê¹ÓÃ¿í¶ÈÓÅÏÈËã·¨£¬ËÑË÷×î´óÉî¶È
+	 *            ä½¿ç”¨å®½åº¦ä¼˜å…ˆç®—æ³•ï¼Œæœç´¢æœ€å¤§æ·±åº¦
 	 * @param maxVisitNum
-	 *            ·ÃÎÊµÄ×î¶àÍøÒ³ÊıÁ¿
+	 *            è®¿é—®çš„æœ€å¤šç½‘é¡µæ•°é‡
 	 */
 	public Crawler(CrawURI seedUrl, int maxDepth, int maxVisitNum) {
 		this(seedUrl, maxDepth);
