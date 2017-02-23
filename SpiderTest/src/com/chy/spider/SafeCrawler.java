@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.http.client.utils.URIBuilder;
 
 import com.chy.spider.config.Config;
 import com.chy.spider.filter.LinkFilter;
@@ -140,7 +141,6 @@ public class SafeCrawler {
 			runners[i] = new CrawlerRunner(this);
 			execServ.execute(runners[i]);
 		}
-
 		execServ.shutdown();
 
 	}
@@ -159,6 +159,7 @@ public class SafeCrawler {
 		CrawURI next = null;
 
 		try {
+			// get next uri from todo table
 			next = getTodo().removeUri();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -187,15 +188,24 @@ public class SafeCrawler {
 					}
 					Iterator<URI> it = list.iterator();
 					while (it.hasNext()) {
-						URI parseduri = nextUri.resolve(it.next());
-						CrawURI nUri = new CrawURI(parseduri, currDepth + 1);
+						// resolve方法将URI解析成绝对路径
+						URI parsedUri = nextUri.resolve(it.next());
+						// 去掉url片段标识(#frag)
+						URIBuilder ub=new URIBuilder(parsedUri);
+						try {
+							parsedUri=ub.setFragment(null).build();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						CrawURI nUri = new CrawURI(parsedUri, currDepth + 1);
 
 						boolean isAccept = true;
 						for (LinkFilter f : filters) {
-							isAccept = isAccept && f.accept(parseduri.toString());
+							isAccept = isAccept && f.accept(parsedUri.toString());
 						}
 
-						if (!SafeCrawler.getVisited().contains(parseduri) && !SafeCrawler.getTodo().contains(nUri)
+						if (!SafeCrawler.getVisited().contains(parsedUri) && !SafeCrawler.getTodo().contains(nUri)
 								&& isAccept) {
 							try {
 								SafeCrawler.getTodo().addUrl(nUri);

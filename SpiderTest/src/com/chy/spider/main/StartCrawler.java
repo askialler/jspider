@@ -31,6 +31,7 @@ public class StartCrawler {
 //		LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
 		LinkedList<LinkFilter> list=new LinkedList<LinkFilter>();
 		list.add(new RegexFilter("http://mebook.cc/.*"));
+		list.add(new NotStartWithFilter("http://mebook.cc/category"));
 		list.add(new NotStartWithFilter("http://mebook.cc/feed"));
 		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, list);
 		crawler.start();

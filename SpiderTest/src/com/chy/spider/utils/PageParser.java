@@ -212,7 +212,10 @@ public class PageParser {
 					try {
 						list.add(new URI(temp));
 					} catch (URISyntaxException e) {
-						e.printStackTrace();
+						if(log.isErrorEnabled()){
+							log.error("Url syntax error, excluded",e);
+						}
+//						e.printStackTrace();
 					}
 				}
 			}

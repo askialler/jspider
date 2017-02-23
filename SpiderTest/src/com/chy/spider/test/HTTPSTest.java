@@ -32,6 +32,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ClientConnectionManager;
@@ -63,7 +64,16 @@ public class HTTPSTest {
 		// e.printStackTrace();
 		// }
 
-		httpstest1();
+//		httpstest1();
+		try {
+			URI uri=new URI("http://mebook.cc/10166.html#respond");
+			URIBuilder ub=new URIBuilder(uri);
+			ub.setFragment(null);
+			uri=ub.build();
+			System.out.println(uri.toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void httpstest1() {
