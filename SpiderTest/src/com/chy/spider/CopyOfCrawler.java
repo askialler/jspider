@@ -10,9 +10,9 @@ import java.util.concurrent.Executors;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.chy.spider.impls.NotStartWithFilter;
-import com.chy.spider.impls.StartWithFilter;
-import com.chy.spider.inters.LinkFilter;
+import com.chy.spider.filter.LinkFilter;
+import com.chy.spider.filter.impls.NotStartWithFilter;
+import com.chy.spider.filter.impls.StartWithFilter;
 import com.chy.spider.utils.*;
 
 /**

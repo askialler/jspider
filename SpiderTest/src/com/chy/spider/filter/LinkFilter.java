@@ -1,4 +1,4 @@
-package com.chy.spider.inters;
+package com.chy.spider.filter;
 
 
 public interface LinkFilter {

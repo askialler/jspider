@@ -1,7 +1,7 @@
-package com.chy.spider.impls;
+package com.chy.spider.filter.impls;
 
 
-import com.chy.spider.inters.LinkFilter;
+import com.chy.spider.filter.LinkFilter;
 
 public class StartWithFilter implements LinkFilter {
 	private String filterStr="";

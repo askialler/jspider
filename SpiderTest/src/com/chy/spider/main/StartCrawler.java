@@ -8,8 +8,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.chy.spider.CrawURI;
 import com.chy.spider.SafeCrawler;
-import com.chy.spider.impls.RegexFilter;
-import com.chy.spider.inters.LinkFilter;
+import com.chy.spider.filter.LinkFilter;
+import com.chy.spider.filter.impls.RegexFilter;
 
 public class StartCrawler {
 	
