@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.chy.spider.config.Config;
 import com.chy.spider.impls.NotStartWithFilter;
 import com.chy.spider.impls.RegexFilter;
 import com.chy.spider.impls.StartWithFilter;
@@ -71,26 +72,23 @@ public class SafeCrawler {
 	}
 
 	public SafeCrawler(CrawURI seedUrl) {
-		todo = new SafeTodoQueue();
-		visited = new VisitedQueue();
-		this.seedUrl = seedUrl;
-		try {
-			todo.addUrl(seedUrl);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		this.filter = new LinkFilter() {
 
+		this(seedUrl, Config.DefaultMaxDepth, Config.DefaultMaxVisitNum, new LinkFilter() {
 			@Override
 			public boolean accept(String uri) {
 				return true;
 			}
-		};
+		});
 	}
 
 	public SafeCrawler(CrawURI seedUrl, int maxDepth) {
-		this(seedUrl);
-		this.maxDepth = maxDepth;
+
+		this(seedUrl, maxDepth, Config.DefaultMaxVisitNum, new LinkFilter() {
+			@Override
+			public boolean accept(String uri) {
+				return true;
+			}
+		});
 	}
 
 	/**
@@ -103,21 +101,42 @@ public class SafeCrawler {
 	 *            访问的最多网页数量
 	 */
 	public SafeCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum) {
-		this(seedUrl, maxDepth);
-		this.maxVisitNum = maxVisitNum;
-		if (log.isInfoEnabled()) {
-			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:"
-					+ this.maxDepth + " maxVisitNum:" + this.maxVisitNum);
-		}
+
+		this(seedUrl, maxDepth, maxVisitNum, new LinkFilter() {
+			@Override
+			public boolean accept(String uri) {
+				return true;
+			}
+		});
 	}
 
-	public SafeCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum,
-			LinkFilter filter) {
-		this(seedUrl, maxDepth, maxVisitNum);
+	/**
+	 * 
+	 * @param seedUrl
+	 *            the first url
+	 * @param maxDepth
+	 *            使用宽度优先算法，搜索最大深度
+	 * @param maxVisitNum
+	 *            访问的最多网页数量
+	 * @param filter
+	 *            过滤器，过滤需要抓取的url
+	 */
+	public SafeCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum, LinkFilter filter) {
+
+		todo = new SafeTodoQueue();
+		visited = new VisitedQueue();
+		this.seedUrl = seedUrl;
+		try {
+			todo.addUrl(seedUrl);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		this.maxDepth = maxDepth;
+		this.maxVisitNum = maxVisitNum;
 		this.filter = filter;
 		if (log.isInfoEnabled()) {
-			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:"
-					+ this.maxDepth + " maxVisitNum:" + this.maxVisitNum);
+			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
+					+ this.maxVisitNum);
 		}
 	}
 
@@ -143,7 +162,7 @@ public class SafeCrawler {
 	}
 
 	private boolean visitOneUri(LinkFilter filter) {
-		boolean ret=false;
+		boolean ret = false;
 		CrawURI next = null;
 
 		try {
@@ -160,7 +179,7 @@ public class SafeCrawler {
 				getVisited().addVisitedUrl(nextUri);
 
 				if (log.isInfoEnabled()) {
-					log.info("visited table add uri("+currDepth+"): " + nextUri);
+					log.info("visited table add uri(" + currDepth + "): " + nextUri);
 				}
 				String html = PageParser.getHtmlPage(nextUri);
 				if (log.isDebugEnabled()) {
@@ -177,8 +196,7 @@ public class SafeCrawler {
 					while (it.hasNext()) {
 						URI parseduri = nextUri.resolve(it.next());
 						CrawURI nUri = new CrawURI(parseduri, currDepth + 1);
-						if (!SafeCrawler.getVisited().contains(parseduri)
-								&& !SafeCrawler.getTodo().contains(nUri)
+						if (!SafeCrawler.getVisited().contains(parseduri) && !SafeCrawler.getTodo().contains(nUri)
 								&& filter.accept(parseduri.toString())) {
 							try {
 								SafeCrawler.getTodo().addUrl(nUri);
@@ -188,9 +206,9 @@ public class SafeCrawler {
 
 						}
 					}
-					ret=true;
-				}else{
-					ret=false;
+					ret = true;
+				} else {
+					ret = false;
 				}
 
 			}
@@ -206,15 +224,15 @@ public class SafeCrawler {
 
 		CrawURI seed = null;
 		try {
-			seed = new CrawURI(new URI("http://home.dcits.com"));
+			seed = new CrawURI(new URI("http://mebook.cc/"));
 			// new URI("https://www.zhihu.com/question/26488686"));
 			// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		LinkFilter filter = new StartWithFilter("http://home.dcits.com");
-		LinkFilter filter2 = new RegexFilter("http://home.dcits.com");
-		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter);
+		// LinkFilter filter = new StartWithFilter("http://mebook.cc/");
+		LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
+		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter2);
 		crawler.start();
 
 		log.info("main-Thread is done ..............................................");
@@ -224,12 +242,13 @@ public class SafeCrawler {
 	private class CrawlerRunner implements Runnable {
 
 		private SafeCrawler crawler;
-		private boolean endFlag=false;
-		
-		public void setEnd(){
-			endFlag=true;
+		private boolean endFlag = false;
+
+		public void setEnd() {
+			endFlag = true;
 		}
-		public boolean isEnd(){
+
+		public boolean isEnd() {
 			return endFlag;
 		}
 
@@ -240,21 +259,19 @@ public class SafeCrawler {
 
 		@Override
 		public void run() {
-			
-			while (SafeCrawler.getVisited().totalVisited() < getMaxVisitNum()
-					&& !isEnd()) {
-				boolean ret=crawler.visitOneUri(crawler.getFilter());
-				if(!ret && SafeCrawler.todo.isEmpty()){
+
+			while (SafeCrawler.getVisited().totalVisited() < getMaxVisitNum() && !isEnd()) {
+				boolean ret = crawler.visitOneUri(crawler.getFilter());
+				if (!ret && SafeCrawler.todo.isEmpty()) {
 					setEnd();
 				}
-				
+
 			}
 
-//			visitOneUri(filter);
-//			crawler.crawling(crawler.getFilter());
+			// visitOneUri(filter);
+			// crawler.crawling(crawler.getFilter());
 			if (log.isInfoEnabled()) {
-				log.info("CrawThread-" + Thread.currentThread().getName()
-						+ " is done ......");
+				log.info("CrawThread-" + Thread.currentThread().getName() + " is done ......");
 			}
 		}
 
