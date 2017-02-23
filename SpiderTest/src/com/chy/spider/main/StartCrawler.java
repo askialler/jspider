@@ -2,6 +2,7 @@ package com.chy.spider.main;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.LinkedList;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -9,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import com.chy.spider.CrawURI;
 import com.chy.spider.SafeCrawler;
 import com.chy.spider.filter.LinkFilter;
+import com.chy.spider.filter.impls.NotStartWithFilter;
 import com.chy.spider.filter.impls.RegexFilter;
 
 public class StartCrawler {
@@ -26,8 +28,11 @@ public class StartCrawler {
 			e.printStackTrace();
 		}
 		// LinkFilter filter = new StartWithFilter("http://mebook.cc/");
-		LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
-		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter2);
+//		LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
+		LinkedList<LinkFilter> list=new LinkedList<LinkFilter>();
+		list.add(new RegexFilter("http://mebook.cc/.*"));
+		list.add(new NotStartWithFilter("http://mebook.cc/feed"));
+		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, list);
 		crawler.start();
 
 		log.info("main-Thread is done ..............................................");
