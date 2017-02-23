@@ -44,3 +44,193 @@
 2016-09-13 09:34:38,743 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-3 is done ......
 2016-09-13 09:34:38,748 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-2 is done ......
 2016-09-13 09:34:38,840 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:256) - CrawThread-pool-1-thread-1 is done ......
+2017-02-23 10:49:15,447 [INFO ] main (SafeCrawler.java.<init>:109) - seedUrl:http://mebook.cc/ maxDepth:5 maxVisitNum:30
+2017-02-23 10:49:15,490 [INFO ] main (SafeCrawler.java.<init>:130) - seedUrl:http://mebook.cc/ maxDepth:5 maxVisitNum:30
+2017-02-23 10:49:15,538 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(1): http://mebook.cc/
+2017-02-23 10:49:15,539 [INFO ] main (SafeCrawler.java.main:231) - main-Thread is done ..............................................
+2017-02-23 10:49:21,632 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/sitemap.html
+2017-02-23 10:49:21,639 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/feed/
+2017-02-23 10:49:21,647 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs
+2017-02-23 10:49:21,651 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/jdmz
+2017-02-23 10:49:21,639 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/gg
+2017-02-23 10:49:21,738 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/jsls
+2017-02-23 10:49:21,777 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/wxyq
+2017-02-23 10:49:21,795 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/khkb
+2017-02-23 10:49:21,800 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/lvxzj
+2017-02-23 10:49:21,851 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/xdwx
+2017-02-23 10:49:21,902 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/gcsz
+2017-02-23 10:49:22,435 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/shys
+2017-02-23 10:49:22,458 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs
+2017-02-23 10:49:22,529 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/lsjk
+2017-02-23 10:49:22,551 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/wxxh
+2017-02-23 10:49:22,587 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/khqh
+2017-02-23 10:49:22,837 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/%e6%82%ac%e7%96%91%e6%81%90%e6%80%96%c2%b7%e7%a9%bf%e8%b6%8a%e9%87%8d%e7%94%9f
+2017-02-23 10:49:22,853 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/dsyq
+2017-02-23 10:49:22,919 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/gcsz-jpwlxs
+2017-02-23 10:49:23,167 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy
+2017-02-23 10:49:23,175 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/kdren
+2017-02-23 10:49:23,178 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/gfzy
+2017-02-23 10:49:23,235 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/jgwxl
+2017-02-23 10:49:23,249 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/qita
+2017-02-23 10:49:23,289 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/lxgyc
+2017-02-23 10:49:23,320 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/duokan
+2017-02-23 10:49:23,326 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/zzqk
+2017-02-23 10:49:23,363 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/kdmh
+2017-02-23 10:49:23,390 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/gjs
+2017-02-23 10:49:23,405 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-1 is done ......
+2017-02-23 10:49:23,424 [INFO ] pool-1-thread-5 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-5 is done ......
+2017-02-23 10:49:23,437 [INFO ] pool-1-thread-4 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-4 is done ......
+2017-02-23 10:49:23,451 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-2 is done ......
+2017-02-23 10:49:23,552 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-3 is done ......
+2017-02-23 11:06:15,138 [INFO ] main (SafeCrawler.java.<init>:109) - seedUrl:http://mebook.cc/ maxDepth:5 maxVisitNum:30
+2017-02-23 11:06:15,217 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(1): http://mebook.cc/
+2017-02-23 11:06:15,217 [INFO ] main (SafeCrawler.java.main:231) - main-Thread is done ..............................................
+2017-02-23 11:06:17,482 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/sitemap.html
+2017-02-23 11:06:17,496 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/feed/
+2017-02-23 11:06:17,498 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/gg
+2017-02-23 11:06:17,482 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://u.mebook.cc
+2017-02-23 11:06:17,502 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs
+2017-02-23 11:06:17,600 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/jdmz
+2017-02-23 11:06:17,619 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/jsls
+2017-02-23 11:06:17,620 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/wxyq
+2017-02-23 11:06:17,724 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/khkb
+2017-02-23 11:06:17,743 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/lvxzj
+2017-02-23 11:06:17,863 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/xdwx
+2017-02-23 11:06:18,111 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/gcsz
+2017-02-23 11:06:18,215 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/cxxs/shys
+2017-02-23 11:06:18,261 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs
+2017-02-23 11:06:18,349 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/lsjk
+2017-02-23 11:06:18,384 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/wxxh
+2017-02-23 11:06:18,433 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/khqh
+2017-02-23 11:06:18,489 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/%e6%82%ac%e7%96%91%e6%81%90%e6%80%96%c2%b7%e7%a9%bf%e8%b6%8a%e9%87%8d%e7%94%9f
+2017-02-23 11:06:18,528 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/dsyq
+2017-02-23 11:06:18,581 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/jpwlxs/gcsz-jpwlxs
+2017-02-23 11:06:18,631 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy
+2017-02-23 11:06:18,676 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/kdren
+2017-02-23 11:06:18,721 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/gfzy
+2017-02-23 11:06:18,782 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/jgwxl
+2017-02-23 11:06:18,811 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/qita
+2017-02-23 11:06:18,876 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/hjzy/lxgyc
+2017-02-23 11:06:18,892 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/duokan
+2017-02-23 11:06:18,896 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/zzqk
+2017-02-23 11:06:18,899 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:174) - visited table add uri(2): http://mebook.cc/category/kdmh
+2017-02-23 11:06:18,938 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-1 is done ......
+2017-02-23 11:06:18,984 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-2 is done ......
+2017-02-23 11:06:18,999 [INFO ] pool-1-thread-4 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-4 is done ......
+2017-02-23 11:06:19,023 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-3 is done ......
+2017-02-23 11:06:19,024 [INFO ] pool-1-thread-5 (SafeCrawler.java.run:267) - CrawThread-pool-1-thread-5 is done ......
+2017-02-23 12:58:24,524 [INFO ] main (ConfigHelper.java.getProperties:31) - load config file: E:\mygit\SpiderTest\conf\config.properties
+2017-02-23 12:58:24,590 [INFO ] main (ConfigHelper.java.getProperties:31) - load config file: E:\mygit\SpiderTest\conf\config.properties
+2017-02-23 12:58:42,942 [INFO ] main (ConfigHelper.java.getProperties:31) - load config file: E:\mygit\SpiderTest\conf\config.properties
+2017-02-23 12:58:54,431 [INFO ] main (ConfigHelper.java.getProperties:31) - load config file: E:\mygit\SpiderTest\conf\config.properties
+2017-02-23 14:08:25,084 [INFO ] main (SafeCrawler.java.<init>:138) - seedUrl:http://mebook.cc/ maxDepth:5 maxVisitNum:30
+2017-02-23 14:08:25,120 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(1): http://mebook.cc/
+2017-02-23 14:08:25,120 [INFO ] main (SafeCrawler.java.main:238) - main-Thread is done ..............................................
+2017-02-23 14:08:28,599 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/sitemap.html
+2017-02-23 14:08:28,599 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/feed/
+2017-02-23 14:08:28,599 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/gg
+2017-02-23 14:08:28,615 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs
+2017-02-23 14:08:28,620 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/jdmz
+2017-02-23 14:08:28,698 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/jsls
+2017-02-23 14:08:28,730 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/wxyq
+2017-02-23 14:08:28,746 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/khkb
+2017-02-23 14:08:28,747 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/lvxzj
+2017-02-23 14:08:28,863 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/xdwx
+2017-02-23 14:08:28,901 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/gcsz
+2017-02-23 14:08:28,915 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs
+2017-02-23 14:08:28,909 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/shys
+2017-02-23 14:08:28,967 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/lsjk
+2017-02-23 14:08:29,009 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/wxxh
+2017-02-23 14:08:29,047 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/khqh
+2017-02-23 14:08:29,069 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/%e6%82%ac%e7%96%91%e6%81%90%e6%80%96%c2%b7%e7%a9%bf%e8%b6%8a%e9%87%8d%e7%94%9f
+2017-02-23 14:08:29,087 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/dsyq
+2017-02-23 14:08:29,110 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/gcsz-jpwlxs
+2017-02-23 14:08:29,145 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy
+2017-02-23 14:08:29,179 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/kdren
+2017-02-23 14:08:29,215 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/gfzy
+2017-02-23 14:08:29,231 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/jgwxl
+2017-02-23 14:08:29,250 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/qita
+2017-02-23 14:08:29,286 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/lxgyc
+2017-02-23 14:08:29,320 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/duokan
+2017-02-23 14:08:29,359 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/zzqk
+2017-02-23 14:08:29,360 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/kdmh
+2017-02-23 14:08:29,427 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/gjs
+2017-02-23 14:08:29,436 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-2 is done ......
+2017-02-23 14:08:29,490 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-1 is done ......
+2017-02-23 14:08:29,493 [INFO ] pool-1-thread-5 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-5 is done ......
+2017-02-23 14:08:29,515 [INFO ] pool-1-thread-4 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-4 is done ......
+2017-02-23 14:08:29,822 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-3 is done ......
+2017-02-23 14:12:42,073 [INFO ] main (SafeCrawler.java.<init>:138) - seedUrl:http://mebook.cc/ maxDepth:5 maxVisitNum:30
+2017-02-23 14:12:42,079 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(1): http://mebook.cc/
+2017-02-23 14:12:42,079 [INFO ] main (StartCrawler.java.main:33) - main-Thread is done ..............................................
+2017-02-23 14:12:42,702 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/sitemap.html
+2017-02-23 14:12:42,717 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/feed/
+2017-02-23 14:12:42,718 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/gg
+2017-02-23 14:12:42,718 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs
+2017-02-23 14:12:42,720 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/jdmz
+2017-02-23 14:12:42,992 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/jsls
+2017-02-23 14:12:43,018 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/wxyq
+2017-02-23 14:12:43,254 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/khkb
+2017-02-23 14:12:43,276 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/lvxzj
+2017-02-23 14:12:43,331 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/xdwx
+2017-02-23 14:12:43,347 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/gcsz
+2017-02-23 14:12:43,579 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/shys
+2017-02-23 14:12:43,634 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs
+2017-02-23 14:12:43,661 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/lsjk
+2017-02-23 14:12:43,685 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/wxxh
+2017-02-23 14:12:43,892 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/khqh
+2017-02-23 14:12:43,899 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/%e6%82%ac%e7%96%91%e6%81%90%e6%80%96%c2%b7%e7%a9%bf%e8%b6%8a%e9%87%8d%e7%94%9f
+2017-02-23 14:12:43,909 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/dsyq
+2017-02-23 14:12:44,138 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/gcsz-jpwlxs
+2017-02-23 14:12:44,152 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy
+2017-02-23 14:12:44,160 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/kdren
+2017-02-23 14:12:44,364 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/gfzy
+2017-02-23 14:12:44,379 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/jgwxl
+2017-02-23 14:12:44,380 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/qita
+2017-02-23 14:12:44,550 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/lxgyc
+2017-02-23 14:12:44,560 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/duokan
+2017-02-23 14:12:44,573 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/zzqk
+2017-02-23 14:12:44,750 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/kdmh
+2017-02-23 14:12:44,755 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/gjs
+2017-02-23 14:12:44,767 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-3 is done ......
+2017-02-23 14:12:44,929 [INFO ] pool-1-thread-4 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-4 is done ......
+2017-02-23 14:12:44,931 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-1 is done ......
+2017-02-23 14:12:45,484 [INFO ] pool-1-thread-5 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-5 is done ......
+2017-02-23 14:12:45,651 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-2 is done ......
+2017-02-23 15:14:01,640 [INFO ] main (SafeCrawler.java.<init>:138) - seedUrl:http://mebook.cc/ maxDepth:5 maxVisitNum:30
+2017-02-23 15:14:01,731 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(1): http://mebook.cc/
+2017-02-23 15:14:01,731 [INFO ] main (StartCrawler.java.main:33) - main-Thread is done ..............................................
+2017-02-23 15:14:04,055 [INFO ] pool-1-thread-2 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/sitemap.html
+2017-02-23 15:14:04,055 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs
+2017-02-23 15:14:04,055 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/feed/
+2017-02-23 15:14:04,074 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/jdmz
+2017-02-23 15:14:04,055 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/gg
+2017-02-23 15:14:04,174 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/jsls
+2017-02-23 15:14:04,216 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/wxyq
+2017-02-23 15:14:04,218 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/khkb
+2017-02-23 15:14:04,234 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/lvxzj
+2017-02-23 15:14:04,277 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/xdwx
+2017-02-23 15:14:04,334 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/gcsz
+2017-02-23 15:14:04,344 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/cxxs/shys
+2017-02-23 15:14:04,346 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs
+2017-02-23 15:14:04,384 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/lsjk
+2017-02-23 15:14:04,466 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/wxxh
+2017-02-23 15:14:04,488 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/khqh
+2017-02-23 15:14:04,491 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/%e6%82%ac%e7%96%91%e6%81%90%e6%80%96%c2%b7%e7%a9%bf%e8%b6%8a%e9%87%8d%e7%94%9f
+2017-02-23 15:14:04,504 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/dsyq
+2017-02-23 15:14:04,571 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/jpwlxs/gcsz-jpwlxs
+2017-02-23 15:14:04,617 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy
+2017-02-23 15:14:04,626 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/kdren
+2017-02-23 15:14:04,628 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/gfzy
+2017-02-23 15:14:04,663 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/jgwxl
+2017-02-23 15:14:04,709 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/qita
+2017-02-23 15:14:04,777 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/hjzy/lxgyc
+2017-02-23 15:14:04,787 [INFO ] pool-1-thread-1 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/duokan
+2017-02-23 15:14:04,793 [INFO ] pool-1-thread-3 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/zzqk
+2017-02-23 15:14:04,796 [INFO ] pool-1-thread-5 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/kdmh
+2017-02-23 15:14:04,918 [INFO ] pool-1-thread-4 (SafeCrawler.java.visitOneUri:182) - visited table add uri(2): http://mebook.cc/category/gjs
+2017-02-23 15:14:04,927 [INFO ] pool-1-thread-1 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-1 is done ......
+2017-02-23 15:14:04,949 [INFO ] pool-1-thread-3 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-3 is done ......
+2017-02-23 15:14:04,965 [INFO ] pool-1-thread-5 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-5 is done ......
+2017-02-23 15:14:05,005 [INFO ] pool-1-thread-4 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-4 is done ......
+2017-02-23 15:14:05,142 [INFO ] pool-1-thread-2 (SafeCrawler.java.run:274) - CrawThread-pool-1-thread-2 is done ......

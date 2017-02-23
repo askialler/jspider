@@ -186,7 +186,7 @@ public class SafeCrawler {
 					log.debug("PageParser getHtmlPage: " + nextUri);
 				}
 
-				if (currDepth + 1 <= getMaxDepth()) {
+				if (currDepth + 1 <= getMaxDepth() && html!=null) {
 
 					List<URI> list = PageParser.parseWebPage(html);
 					if (log.isDebugEnabled()) {

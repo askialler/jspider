@@ -42,54 +42,44 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class PageParser {
 
 	private static HttpClient client;
 	private static Log log = LogFactory.getLog(PageParser.class);
 
 	public static HttpClient getHttpClient() {
-//		if (client == null) {
+		// if (client == null) {
 
-			SSLContext sslCxt=null;
-			try {
-				sslCxt = SSLContexts.custom().useSSL()
-						.loadTrustMaterial(null, new TrustStrategy() {
-							@Override
-							public boolean isTrusted(X509Certificate[] chain,
-									String authType) throws CertificateException {
-								return true;
-							}
-						}).build();
-			} catch (KeyManagementException e) {
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			} catch (KeyStoreException e) {
-				e.printStackTrace();
-			}
-			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
-					sslCxt,
-					SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-			Registry<ConnectionSocketFactory> registry = RegistryBuilder
-					.<ConnectionSocketFactory> create()
-					.register("http",
-							PlainConnectionSocketFactory.getSocketFactory())
-					.register("https", sslsf).build();
-			PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(
-					registry);
-			connMgr.setMaxTotal(50);
-			connMgr.setDefaultMaxPerRoute(50);
-			RequestConfig config = RequestConfig.custom()
-					.setConnectTimeout(10000).setConnectionRequestTimeout(10000)
-					.setSocketTimeout(10000).build();
-			client = HttpClients.custom().setConnectionManager(connMgr)
-					.setDefaultRequestConfig(config).build();
-			if (log.isDebugEnabled()) {
-				log.debug("httpclient initialize successfully");
-			}
+		SSLContext sslCxt = null;
+		try {
+			sslCxt = SSLContexts.custom().useSSL().loadTrustMaterial(null, new TrustStrategy() {
+				@Override
+				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+					return true;
+				}
+			}).build();
+		} catch (KeyManagementException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (KeyStoreException e) {
+			e.printStackTrace();
+		}
+		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslCxt,
+				SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+		Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory> create()
+				.register("http", PlainConnectionSocketFactory.getSocketFactory()).register("https", sslsf).build();
+		PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(registry);
+		connMgr.setMaxTotal(50);
+		connMgr.setDefaultMaxPerRoute(50);
+		RequestConfig config = RequestConfig.custom().setConnectTimeout(10000).setConnectionRequestTimeout(10000)
+				.setSocketTimeout(10000).build();
+		client = HttpClients.custom().setConnectionManager(connMgr).setDefaultRequestConfig(config).build();
+		if (log.isDebugEnabled()) {
+			log.debug("httpclient initialize successfully");
+		}
 
-//		}
+		// }
 
 		return client;
 	}
@@ -101,30 +91,29 @@ public class PageParser {
 	public static String getHtmlPage(URI uri) {
 
 		HttpGet httpget = new HttpGet(uri);
-//		httpget.setURI(uri);
-//		StringBuilder sb = new StringBuilder();
-//		BufferedInputStream ins = null;
-		
+		// httpget.setURI(uri);
+		// StringBuilder sb = new StringBuilder();
+		// BufferedInputStream ins = null;
 
-//		httpget.addHeader(new BasicHeader("Connection", "Keep-Alive"));
-//		Header[] reqhs= httpget.getAllHeaders();
-//		for(Header hd:reqhs){
-//			log.info("request header: "+hd.toString());
-//		}
-		ResponseHandler<String> rh=new ResponseHandler<String>() {
-			
+		// httpget.addHeader(new BasicHeader("Connection", "Keep-Alive"));
+		// Header[] reqhs= httpget.getAllHeaders();
+		// for(Header hd:reqhs){
+		// log.info("request header: "+hd.toString());
+		// }
+		ResponseHandler<String> rh = new ResponseHandler<String>() {
+
 			@Override
 			public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
 
-				StatusLine statusLine=response.getStatusLine();
-				if(statusLine.getStatusCode() >=400){
+				StatusLine statusLine = response.getStatusLine();
+				if (statusLine.getStatusCode() >= 400) {
 					throw new HttpResponseException(statusLine.getStatusCode(), statusLine.getReasonPhrase());
 				}
-				HttpEntity entity=response.getEntity();
-				if(entity==null){
+				HttpEntity entity = response.getEntity();
+				if (entity == null) {
 					throw new ClientProtocolException("response contains no content");
 				}
-				
+
 				StringBuilder sb = new StringBuilder();
 				BufferedInputStream ins = null;
 				ins = new BufferedInputStream(entity.getContent());
@@ -134,70 +123,81 @@ public class PageParser {
 				while (-1 != (temp = ins.read(buffer, 0, 1024))) {
 					sb.append(new String(buffer, 0, temp, "utf-8"));
 				}
-				
+
 				return sb.toString();
 			}
 		};
-		String content=null;
+		String content = null;
 		try {
-			content=PageParser.getHttpClient().execute(httpget,rh);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-//		try {
-//			HttpResponse resp = PageParser.getHttpClient().execute(httpget);
-//			
-//			if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-//				ins = new BufferedInputStream(resp
-//						.getEntity().getContent());
-//
-//				int temp = 0;
-//				byte[] buffer = new byte[1024];
-//				while (-1 != (temp = ins.read(buffer, 0, 1024))) {
-//					sb.append(new String(buffer, 0, temp, "utf-8"));
-//				}
-////				Header[] hs= resp.getAllHeaders();
-////				for(Header hd:hs){
-////					log.info(hd.toString());
-////				}
-//				
-//			}
-//
-//		} catch (ClientProtocolException e) {
+			content = PageParser.getHttpClient().execute(httpget, rh);
+		} catch (HttpResponseException e) {
+			if(log.isErrorEnabled()){
+				log.error("http request error:",e);
+			}
 //			e.printStackTrace();
-//		} catch (IOException e) {
-//			// e.printStackTrace();
-//			if (log.isErrorEnabled()) {
-//				log.error("request webpage error: " + uri);
-//				e.printStackTrace();
-//			}
-//		} finally {
-//			if (log.isDebugEnabled()) {
-//				log.debug("gethtmlpage end, httpget abort...");
-//			}
-//			try {
-//				ins.close();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			httpget.abort();
-//		}
+		} catch (ClientProtocolException e) {
+			if(log.isErrorEnabled()){
+				log.error("http request error:",e);
+			}
+//			e.printStackTrace();
+		} catch (IOException e) {
+			if(log.isErrorEnabled()){
+				log.error("http request error:",e);
+			}
+//			e.printStackTrace();
+		}
+
+		// try {
+		// HttpResponse resp = PageParser.getHttpClient().execute(httpget);
+		//
+		// if (resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+		// ins = new BufferedInputStream(resp
+		// .getEntity().getContent());
+		//
+		// int temp = 0;
+		// byte[] buffer = new byte[1024];
+		// while (-1 != (temp = ins.read(buffer, 0, 1024))) {
+		// sb.append(new String(buffer, 0, temp, "utf-8"));
+		// }
+		//// Header[] hs= resp.getAllHeaders();
+		//// for(Header hd:hs){
+		//// log.info(hd.toString());
+		//// }
+		//
+		// }
+		//
+		// } catch (ClientProtocolException e) {
+		// e.printStackTrace();
+		// } catch (IOException e) {
+		// // e.printStackTrace();
+		// if (log.isErrorEnabled()) {
+		// log.error("request webpage error: " + uri);
+		// e.printStackTrace();
+		// }
+		// } finally {
+		// if (log.isDebugEnabled()) {
+		// log.debug("gethtmlpage end, httpget abort...");
+		// }
+		// try {
+		// ins.close();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// httpget.abort();
+		// }
 		return content;
 	}
 
-//	public static ArrayList<URI> parseWebPage(String html) {
-//
-//		return parseWebPage(html, new LinkFilter() {
-//
-//			@Override
-//			public ArrayList<URI> doFilter(ArrayList<URI> list) {
-//				return list;
-//			}
-//		});
-//	}
+	// public static ArrayList<URI> parseWebPage(String html) {
+	//
+	// return parseWebPage(html, new LinkFilter() {
+	//
+	// @Override
+	// public ArrayList<URI> doFilter(ArrayList<URI> list) {
+	// return list;
+	// }
+	// });
+	// }
 
 	public static List<URI> parseWebPage(String html) {
 
@@ -216,7 +216,7 @@ public class PageParser {
 					}
 				}
 			}
-//			list = filter.doFilter(list);
+			// list = filter.doFilter(list);
 		}
 		return list;
 	}
