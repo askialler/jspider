@@ -8,15 +8,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.chy.spider.config.Config;
 import com.chy.spider.filter.LinkFilter;
-import com.chy.spider.filter.impls.NotStartWithFilter;
-import com.chy.spider.filter.impls.RegexFilter;
-import com.chy.spider.filter.impls.StartWithFilter;
 import com.chy.spider.utils.*;
 
 /**
@@ -30,7 +29,8 @@ public class SafeCrawler {
 	private CrawURI seedUrl;
 	private static SafeTodoQueue todo;
 	private static VisitedQueue visited;
-	private static Log log = LogFactory.getLog(SafeCrawler.class);
+	private static Logger logger=LoggerFactory.getLogger(SafeCrawler.class);
+//	private static Log log = LogFactory.getLog(SafeCrawler.class);
 	private int maxDepth = 3;
 	private int maxVisitNum = 10;
 	private List<LinkFilter> filters;
@@ -128,8 +128,8 @@ public class SafeCrawler {
 		this.maxDepth = maxDepth;
 		this.maxVisitNum = maxVisitNum;
 		this.filters = filters;
-		if (log.isInfoEnabled()) {
-			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
+		if (logger.isInfoEnabled()) {
+			logger.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
 					+ this.maxVisitNum);
 		}
 	}
@@ -172,19 +172,19 @@ public class SafeCrawler {
 
 				getVisited().addVisitedUrl(nextUri);
 
-				if (log.isInfoEnabled()) {
-					log.info("visited table add uri(" + currDepth + "): " + nextUri);
+				if (logger.isInfoEnabled()) {
+					logger.info("visited table add uri(" + currDepth + "): " + nextUri);
 				}
 				String html = PageParser.getHtmlPage(nextUri);
-				if (log.isDebugEnabled()) {
-					log.debug("PageParser getHtmlPage: " + nextUri);
+				if (logger.isDebugEnabled()) {
+					logger.debug("PageParser getHtmlPage: " + nextUri);
 				}
 
 				if (currDepth + 1 <= getMaxDepth() && html != null) {
 
 					List<URI> list = PageParser.parseWebPage(html);
-					if (log.isDebugEnabled()) {
-						log.debug("PageParser parseWebPage: " + nextUri);
+					if (logger.isDebugEnabled()) {
+						logger.debug("PageParser parseWebPage: " + nextUri);
 					}
 					Iterator<URI> it = list.iterator();
 					while (it.hasNext()) {
@@ -278,8 +278,8 @@ public class SafeCrawler {
 
 			// visitOneUri(filter);
 			// crawler.crawling(crawler.getFilter());
-			if (log.isInfoEnabled()) {
-				log.info("CrawThread-" + Thread.currentThread().getName() + " is done ......");
+			if (logger.isInfoEnabled()) {
+				logger.info("CrawThread-" + Thread.currentThread().getName() + " is done ......");
 			}
 		}
 

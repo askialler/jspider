@@ -5,10 +5,13 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MD5Encoder {
 
-	private static Log log = LogFactory.getLog(MD5Encoder.class);
+//	private static Log log = LogFactory.getLog(MD5Encoder.class);
+	private static Logger logger=LoggerFactory.getLogger(MD5Encoder.class);
 	private static final char[] hexCode = "0123456789ABCDEF".toCharArray();
 
 	public static String getMD5Digest(String url) {
@@ -30,8 +33,8 @@ public class MD5Encoder {
 				result.append(hexCode[(b & 0xF)]);
 			}
 
-			if (log.isDebugEnabled()) {
-				log.debug("url: " + url + " ,md5 digest: " + result.toString());
+			if (logger.isDebugEnabled()) {
+				logger.debug("url: " + url + " ,md5 digest: " + result.toString());
 			}
 			// long end = System.currentTimeMillis();
 		} catch (NoSuchAlgorithmException e) {

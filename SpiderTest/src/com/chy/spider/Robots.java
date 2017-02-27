@@ -11,6 +11,8 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.chy.spider.filter.LinkFilter;
 import com.chy.spider.filter.impls.NotStartWithFilter;
@@ -24,7 +26,8 @@ import com.chy.spider.utils.PageParser;
  */
 public class Robots {
 	
-	private static Log log = LogFactory.getLog(Robots.class);
+//	private static Log log = LogFactory.getLog(Robots.class);
+	private static Logger logger=LoggerFactory.getLogger(Robots.class);
 
 	public static List<LinkFilter> parseRobots(URI robotUri) {
 
@@ -41,8 +44,8 @@ public class Robots {
 						URIBuilder ub = new URIBuilder(robotUri);
 						try {
 							String filterStr = ub.setPath(path).build().toString();
-							if(log.isInfoEnabled()){
-								log.info("add robots filter:"+filterStr);
+							if(logger.isInfoEnabled()){
+								logger.info("add robots filter:"+filterStr);
 							}
 							list.add(new NotStartWithFilter(filterStr));
 						} catch (URISyntaxException e) {

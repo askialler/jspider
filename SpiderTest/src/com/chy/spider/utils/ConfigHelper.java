@@ -9,10 +9,14 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigHelper {
 
-	private static Log log = LogFactory.getLog(ConfigHelper.class);
+//	private static Log logger = LogFactory.getLog(ConfigHelper.class);
+	private static Logger logger=LoggerFactory.getLogger(ConfigHelper.class);
+	
 	private static Properties properties = new Properties();
 	private static String filePath;
 	
@@ -24,8 +28,8 @@ public class ConfigHelper {
 		
 		String baseHome=System.getProperty("user.dir");
 		filePath=baseHome+File.separator+"conf"+File.separator+"config.properties";
-		if(log.isInfoEnabled()){
-			log.info("load config file: "+filePath);
+		if(logger.isInfoEnabled()){
+			logger.info("load config file: "+filePath);
 		}
 		
 		Properties props=new Properties();

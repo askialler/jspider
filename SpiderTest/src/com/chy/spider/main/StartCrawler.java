@@ -5,8 +5,11 @@ import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.chy.spider.CrawURI;
 import com.chy.spider.Robots;
@@ -18,7 +21,8 @@ import com.chy.spider.filter.impls.StartWithFilter;
 
 public class StartCrawler {
 	
-	private static Log log = LogFactory.getLog(StartCrawler.class);
+//	private static Log log = LogFactory.getLog(StartCrawler.class);
+	private static Logger logger=LoggerFactory.getLogger(StartCrawler.class);
 
 	public static void main(String[] args) {
 
@@ -32,9 +36,9 @@ public class StartCrawler {
 			list.add(new StartWithFilter("http://mebook.cc/"));
 			list.add(new NotStartWithFilter("http://mebook.cc/category"));
 			long begin=System.currentTimeMillis();
-			SafeCrawler crawler = new SafeCrawler(seed, 10, 1000, list);
+			SafeCrawler crawler = new SafeCrawler(seed, 10, 5, list);
 			long end=System.currentTimeMillis();
-			log.info("waste time:"+(end-begin));
+			logger.info("waste time:"+(end-begin));
 			crawler.start();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -45,7 +49,7 @@ public class StartCrawler {
 
 
 
-		log.info("main-Thread is done ..............................................");
+		logger.info("main-Thread is done ..............................................");
 	}
 
 }

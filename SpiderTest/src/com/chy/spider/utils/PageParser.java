@@ -14,8 +14,6 @@ import java.util.List;
 
 import javax.net.ssl.SSLContext;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -43,11 +41,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PageParser {
 
 	private static HttpClient client;
-	private static Log log = LogFactory.getLog(PageParser.class);
+//	private static Log log = LogFactory.getLog(PageParser.class);
+	private static Logger logger=LoggerFactory.getLogger(PageParser.class);
 
 	public static HttpClient getHttpClient() {
 		
@@ -78,8 +79,8 @@ public class PageParser {
 		RequestConfig config = RequestConfig.custom().setConnectTimeout(10000).setConnectionRequestTimeout(10000)
 				.setSocketTimeout(10000).setProxy(proxy).build();
 		client = HttpClients.custom().setConnectionManager(connMgr).setDefaultRequestConfig(config).build();
-		if (log.isDebugEnabled()) {
-			log.debug("httpclient initialize successfully");
+		if (logger.isDebugEnabled()) {
+			logger.debug("httpclient initialize successfully");
 		}
 		// }
 
@@ -134,18 +135,18 @@ public class PageParser {
 		try {
 			content = PageParser.getHttpClient().execute(httpget, rh);
 		} catch (HttpResponseException e) {
-			if (log.isErrorEnabled()) {
-				log.error("http request error:", e);
+			if (logger.isErrorEnabled()) {
+				logger.error("http request error:", e);
 			}
 			// e.printStackTrace();
 		} catch (ClientProtocolException e) {
-			if (log.isErrorEnabled()) {
-				log.error("http request error:", e);
+			if (logger.isErrorEnabled()) {
+				logger.error("http request error:", e);
 			}
 			// e.printStackTrace();
 		} catch (IOException e) {
-			if (log.isErrorEnabled()) {
-				log.error("http request error:", e);
+			if (logger.isErrorEnabled()) {
+				logger.error("http request error:", e);
 			}
 			// e.printStackTrace();
 		}
@@ -215,8 +216,8 @@ public class PageParser {
 					try {
 						list.add(new URI(temp));
 					} catch (URISyntaxException e) {
-						if (log.isErrorEnabled()) {
-							log.error("Url syntax error, excluded", e);
+						if (logger.isErrorEnabled()) {
+							logger.error("Url syntax error, excluded", e);
 						}
 						// e.printStackTrace();
 					}
