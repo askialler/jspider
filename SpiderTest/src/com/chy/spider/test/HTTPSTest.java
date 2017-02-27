@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -15,9 +16,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -26,6 +29,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -49,9 +53,13 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 
+import sun.misc.BASE64Encoder;
+
 //import org.json.JSONObject;
 
 public class HTTPSTest {
+
+	private static final char[] hexCode = "0123456789ABCDEF".toCharArray();
 
 	public static void main(String[] args) {
 
@@ -64,45 +72,61 @@ public class HTTPSTest {
 		// e.printStackTrace();
 		// }
 
-//		httpstest1();
+		// httpstest1();
+		// try {
+		// URI uri=new URI("http://mebook.cc/10166.html#respond");
+		// URIBuilder ub=new URIBuilder(uri);
+		// ub.setFragment(null);
+		// uri=ub.build();
+		// System.out.println(uri.toString());
+		// } catch (URISyntaxException e) {
+		// e.printStackTrace();
+		// }
+
+		String str = "a";
+		byte[] digest = null;
 		try {
-			URI uri=new URI("http://mebook.cc/10166.html#respond");
-			URIBuilder ub=new URIBuilder(uri);
-			ub.setFragment(null);
-			uri=ub.build();
-			System.out.println(uri.toString());
-		} catch (URISyntaxException e) {
+			MessageDigest md = MessageDigest.getInstance("md5");
+			md.reset();
+			digest = md.digest(str.getBytes());
+			// base64 
+			// BASE64Encoder be=new BASE64Encoder();
+			// String base64 = be.encode(digest);
+//			long begin = System.currentTimeMillis();
+			StringBuilder result = new StringBuilder(digest.length * 2);
+			// String a1=DatatypeConverter.printHexBinary(digest);
+			for (byte b : digest) {
+				result.append(hexCode[(b >> 4) & 0xF]);
+				result.append(hexCode[(b & 0xF)]);
+			}
+
+//			long end = System.currentTimeMillis();
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public static void httpstest1() {
 		try {
 
-			SSLContext sslCxt = SSLContexts.custom().useSSL()
-					.loadTrustMaterial(null, new TrustStrategy() {
+			SSLContext sslCxt = SSLContexts.custom().useSSL().loadTrustMaterial(null, new TrustStrategy() {
 
-						@Override
-						public boolean isTrusted(X509Certificate[] chain,
-								String authType) throws CertificateException {
-							return true;
-						}
-					}).build();
-			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
-					sslCxt,SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-			Registry<ConnectionSocketFactory> registry= RegistryBuilder.<ConnectionSocketFactory>create()
-            .register("http", PlainConnectionSocketFactory.getSocketFactory())
-            .register("https", sslsf)
-            .build();
+				@Override
+				public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+					return true;
+				}
+			}).build();
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslCxt,
+					SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+			Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory> create()
+					.register("http", PlainConnectionSocketFactory.getSocketFactory()).register("https", sslsf).build();
 			PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(registry);
 
-			
-			CloseableHttpClient client = HttpClients
-					.custom()
-					.setConnectionManager(connMgr)
-//					.setSSLSocketFactory(sslsf)
-//					.setHostnameVerifier(
-//							SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
+			CloseableHttpClient client = HttpClients.custom().setConnectionManager(connMgr)
+					// .setSSLSocketFactory(sslsf)
+					// .setHostnameVerifier(
+					// SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
 					.build();
 			String url = "https://www.zhihu.com/question/26488686";
 			// String url =
@@ -144,8 +168,7 @@ public class HTTPSTest {
 		try {
 			URI uri = new URI("https://www.zhihu.com/question/26488686");
 			URL url = uri.toURL();
-			HttpsURLConnection httpsConn = (HttpsURLConnection) url
-					.openConnection();
+			HttpsURLConnection httpsConn = (HttpsURLConnection) url.openConnection();
 			httpsConn.setDoInput(true);
 			httpsConn.setDoOutput(true);
 			httpsConn.setRequestMethod("GET");
@@ -172,8 +195,7 @@ public class HTTPSTest {
 		}
 	}
 
-	public static String httpsRequest(String requestUrl, String requestMethod,
-			String outputStr) {
+	public static String httpsRequest(String requestUrl, String requestMethod, String outputStr) {
 		try {
 			// 创建SSLContext对象，并使用我们指定的信任管理器初始化
 			TrustManager[] tm = { new TrustAnyTrustManager() };
@@ -200,10 +222,8 @@ public class HTTPSTest {
 			}
 			// 从输入流读取返回内容
 			InputStream inputStream = conn.getInputStream();
-			InputStreamReader inputStreamReader = new InputStreamReader(
-					inputStream, "utf-8");
-			BufferedReader bufferedReader = new BufferedReader(
-					inputStreamReader);
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			String str = null;
 			StringBuffer buffer = new StringBuffer();
 			while ((str = bufferedReader.readLine()) != null) {
@@ -236,18 +256,13 @@ public class HTTPSTest {
 			// URL console = new URL(url);
 			URL console = new URL(new String(url.getBytes("utf-8")));
 
-			HttpURLConnection conn = (HttpURLConnection) console
-					.openConnection();
+			HttpURLConnection conn = (HttpURLConnection) console.openConnection();
 			// 如果是https
 			if (conn instanceof HttpsURLConnection) {
 				SSLContext sc = SSLContext.getInstance("TLS");
-				sc.init(null,
-						new TrustManager[] { new TrustAnyTrustManager() },
-						new java.security.SecureRandom());
-				((HttpsURLConnection) conn).setSSLSocketFactory(sc
-						.getSocketFactory());
-				((HttpsURLConnection) conn)
-						.setHostnameVerifier(new TrustAnyHostnameVerifier());
+				sc.init(null, new TrustManager[] { new TrustAnyTrustManager() }, new java.security.SecureRandom());
+				((HttpsURLConnection) conn).setSSLSocketFactory(sc.getSocketFactory());
+				((HttpsURLConnection) conn).setHostnameVerifier(new TrustAnyHostnameVerifier());
 			}
 			// conn.setRequestProperty("Content-type", "text/html");
 			// conn.setRequestProperty("Accept-Charset", "GBK");
@@ -267,8 +282,7 @@ public class HTTPSTest {
 			while (ret != null) {
 				ret = indata.readLine();
 				if (ret != null && !ret.trim().equals("")) {
-					str_return = str_return
-							+ new String(ret.getBytes("ISO-8859-1"), "utf-8");
+					str_return = str_return + new String(ret.getBytes("ISO-8859-1"), "utf-8");
 				}
 			}
 			conn.disconnect();
@@ -291,14 +305,12 @@ public class HTTPSTest {
 class TrustAnyTrustManager implements X509TrustManager {
 
 	@Override
-	public void checkClientTrusted(X509Certificate[] arg0, String arg1)
-			throws CertificateException {
+	public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
 
 	}
 
 	@Override
-	public void checkServerTrusted(X509Certificate[] arg0, String arg1)
-			throws CertificateException {
+	public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
 
 	}
 

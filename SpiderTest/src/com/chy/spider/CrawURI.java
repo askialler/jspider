@@ -2,17 +2,34 @@ package com.chy.spider;
 
 import java.net.URI;
 
+import com.chy.spider.utils.MD5Encoder;
+import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
+
 public class CrawURI {
 
 	private URI uri;
 	private int depth=1;
+	private String md5;
 	
+	/**
+	 * @return the md5
+	 */
+	public String getMd5() {
+		return md5;
+	}
+	/**
+	 * @param md5 the md5 to set
+	 */
+	public void setMd5(String md5) {
+		this.md5 = md5;
+	}
 	public CrawURI(URI uri) {
 		this.uri=uri;
+		this.md5=MD5Encoder.getMD5Digest(uri.toString());
 	}
-	public CrawURI(URI uri,int level) {
-		this.uri=uri;
-		this.depth=level;
+	public CrawURI(URI uri,int depth) {
+		this(uri);
+		this.depth=depth;
 	}
 	
 	public URI getUri() {
@@ -24,15 +41,21 @@ public class CrawURI {
 	public int getDepth() {
 		return depth;
 	}
-	public void setDepth(int level) {
-		this.depth = level;
+	public void setDepth(int depth) {
+		this.depth = depth;
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
 		
-		return this.uri.equals(((CrawURI)obj).getUri()) ;
+		return this.md5.equals(((CrawURI)obj).getMd5()) ;
 	}
+	
+	@Override
+	public String toString(){
+		return "CrawURI[url: "+this.uri+", md5: "+this.md5+", depth:"+this.depth+"]";
+	}
+	
 
 	
 }

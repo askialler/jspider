@@ -31,7 +31,10 @@ public class StartCrawler {
 			List<LinkFilter> list=Robots.parseRobots(new URI(seedUri+"robots.txt"));
 			list.add(new StartWithFilter("http://mebook.cc/"));
 			list.add(new NotStartWithFilter("http://mebook.cc/category"));
-			SafeCrawler crawler = new SafeCrawler(seed, 5, 30, list);
+			long begin=System.currentTimeMillis();
+			SafeCrawler crawler = new SafeCrawler(seed, 10, 1000, list);
+			long end=System.currentTimeMillis();
+			log.info("waste time:"+(end-begin));
 			crawler.start();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();

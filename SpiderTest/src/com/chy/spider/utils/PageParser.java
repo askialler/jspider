@@ -18,6 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -29,6 +30,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -48,8 +50,9 @@ public class PageParser {
 	private static Log log = LogFactory.getLog(PageParser.class);
 
 	public static HttpClient getHttpClient() {
-		// if (client == null) {
-
+		
+		HttpHost proxy = new HttpHost("10.126.3.161", 3128,"http");
+		
 		SSLContext sslCxt = null;
 		try {
 			sslCxt = SSLContexts.custom().useSSL().loadTrustMaterial(null, new TrustStrategy() {
@@ -73,14 +76,14 @@ public class PageParser {
 		connMgr.setMaxTotal(50);
 		connMgr.setDefaultMaxPerRoute(50);
 		RequestConfig config = RequestConfig.custom().setConnectTimeout(10000).setConnectionRequestTimeout(10000)
-				.setSocketTimeout(10000).build();
+				.setSocketTimeout(10000).setProxy(proxy).build();
 		client = HttpClients.custom().setConnectionManager(connMgr).setDefaultRequestConfig(config).build();
 		if (log.isDebugEnabled()) {
 			log.debug("httpclient initialize successfully");
 		}
-
 		// }
 
+		
 		return client;
 	}
 
@@ -131,20 +134,20 @@ public class PageParser {
 		try {
 			content = PageParser.getHttpClient().execute(httpget, rh);
 		} catch (HttpResponseException e) {
-			if(log.isErrorEnabled()){
-				log.error("http request error:",e);
+			if (log.isErrorEnabled()) {
+				log.error("http request error:", e);
 			}
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} catch (ClientProtocolException e) {
-			if(log.isErrorEnabled()){
-				log.error("http request error:",e);
+			if (log.isErrorEnabled()) {
+				log.error("http request error:", e);
 			}
-//			e.printStackTrace();
+			// e.printStackTrace();
 		} catch (IOException e) {
-			if(log.isErrorEnabled()){
-				log.error("http request error:",e);
+			if (log.isErrorEnabled()) {
+				log.error("http request error:", e);
 			}
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 
 		// try {
@@ -212,10 +215,10 @@ public class PageParser {
 					try {
 						list.add(new URI(temp));
 					} catch (URISyntaxException e) {
-						if(log.isErrorEnabled()){
-							log.error("Url syntax error, excluded",e);
+						if (log.isErrorEnabled()) {
+							log.error("Url syntax error, excluded", e);
 						}
-//						e.printStackTrace();
+						// e.printStackTrace();
 					}
 				}
 			}

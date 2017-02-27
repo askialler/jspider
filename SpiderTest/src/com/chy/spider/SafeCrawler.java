@@ -195,7 +195,6 @@ public class SafeCrawler {
 						try {
 							parsedUri=ub.setFragment(null).build();
 						} catch (URISyntaxException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						CrawURI nUri = new CrawURI(parsedUri, currDepth + 1);
