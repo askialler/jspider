@@ -1,12 +1,13 @@
 package com.chy.spider;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import com.chy.spider.utils.MD5Encoder;
-import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 
 public class CrawURI {
 
+	private int id=0;
 	private URI uri;
 	private int depth=1;
 	private String md5;
@@ -23,12 +24,21 @@ public class CrawURI {
 	public void setMd5(String md5) {
 		this.md5 = md5;
 	}
-	public CrawURI(URI uri) {
-		this.uri=uri;
+	public CrawURI(String uri) {
+		try {
+			this.uri=new URI(uri);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 		this.md5=MD5Encoder.getMD5Digest(uri.toString());
 	}
-	public CrawURI(URI uri,int depth) {
+	public CrawURI(String uri,int depth) {
 		this(uri);
+		this.depth=depth;
+	}
+	public CrawURI(String uri,String md5,Integer depth){
+		this(uri);
+		this.md5=md5;
 		this.depth=depth;
 	}
 	

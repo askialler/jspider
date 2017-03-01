@@ -29,7 +29,7 @@ public class StartCrawler {
 		CrawURI seed = null;
 		try {
 			String seedUri="http://mebook.cc/";
-			seed = new CrawURI(new URI(seedUri));
+			seed = new CrawURI(seedUri);
 			// new URI("https://www.zhihu.com/question/26488686"));
 			// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
 			List<LinkFilter> list=Robots.parseRobots(new URI(seedUri+"robots.txt"));

@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="E:/JavaWorkspace/jars/mybatis-3.4.2/lib/slf4j-api-1.7.22.jar"/>
 	<classpathentry kind="lib" path="E:/JavaWorkspace/jars/mybatis-3.4.2/lib/slf4j-log4j12-1.7.22.jar"/>
 	<classpathentry kind="lib" path="E:/JavaWorkspace/jars/mybatis-3.4.2/mybatis-3.4.2.jar"/>
+	<classpathentry kind="lib" path="E:/mygit/SpiderTest/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

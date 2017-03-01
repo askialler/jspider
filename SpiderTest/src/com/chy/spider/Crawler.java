@@ -102,18 +102,17 @@ public class Crawler {
 		this(seedUrl, maxDepth);
 		this.maxVisitNum = maxVisitNum;
 		if (log.isInfoEnabled()) {
-			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:"
-					+ this.maxDepth + " maxVisitNum:" + this.maxVisitNum);
+			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
+					+ this.maxVisitNum);
 		}
 	}
 
-	public Crawler(CrawURI seedUrl, int maxDepth, int maxVisitNum,
-			LinkFilter filter) {
+	public Crawler(CrawURI seedUrl, int maxDepth, int maxVisitNum, LinkFilter filter) {
 		this(seedUrl, maxDepth, maxVisitNum);
 		this.filter = filter;
 		if (log.isInfoEnabled()) {
-			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:"
-					+ this.maxDepth + " maxVisitNum:" + this.maxVisitNum);
+			log.info("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
+					+ this.maxVisitNum);
 		}
 	}
 
@@ -202,18 +201,16 @@ public class Crawler {
 					Iterator<URI> it = list.iterator();
 					while (it.hasNext()) {
 						URI parseduri = nextUri.resolve(it.next());
-						CrawURI nUri = new CrawURI(parseduri, currLevel + 1);
+						CrawURI nUri = new CrawURI(parseduri.toString(), currLevel + 1);
 						synchronized (this) {
-							if (!getVisited().contains(parseduri)
-									&& !getTodo().contains(nUri)
-									&& filter.accept(parseduri.toString())
-									&& (currLevel + 1) < getMaxDepth()) {
+							if (!getVisited().contains(parseduri) && !getTodo().contains(nUri)
+									&& filter.accept(parseduri.toString()) && (currLevel + 1) < getMaxDepth()) {
 								getTodo().addUrl(nUri);
 
 								// if(log.isDebugEnabled()){
 								// log.debug("todo table add uri: "+parseduri);
 								// }
-								
+
 							}
 							this.notifyAll();
 						}
@@ -224,7 +221,6 @@ public class Crawler {
 			}
 		}
 
-
 	}
 
 	/**
@@ -234,13 +230,11 @@ public class Crawler {
 	public static void main(String[] args) {
 
 		CrawURI seed = null;
-		try {
-			seed = new CrawURI(new URI("http://home.dcits.com"));
-			// new URI("https://www.zhihu.com/question/26488686"));
-			// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+
+		seed = new CrawURI("http://home.dcits.com");
+		// new URI("https://www.zhihu.com/question/26488686"));
+		// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
+
 		LinkFilter filter = new StartWithFilter("http://home.dcits.com");
 		Crawler crawler = new Crawler(seed, 5, 3000, filter);
 		crawler.start();
@@ -261,11 +255,10 @@ public class Crawler {
 		@Override
 		public void run() {
 
-//			visitOneUri(filter);
+			// visitOneUri(filter);
 			crawler.crawling(crawler.getFilter());
 			if (log.isInfoEnabled()) {
-				log.info("CrawThread-" + Thread.currentThread().getName()
-						+ " is done ......");
+				log.info("CrawThread-" + Thread.currentThread().getName() + " is done ......");
 			}
 		}
 

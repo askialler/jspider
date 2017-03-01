@@ -44,17 +44,7 @@ public class SafeTodoQueue implements Iterable<CrawURI> {
 //	}
 
 	public static void main(String[] args) throws URISyntaxException {
-		SafeTodoQueue todo = new SafeTodoQueue();
-		try {
-			todo.addUrl(new CrawURI(new URI("http://www.example.org/"), 1));
-			todo.addUrl(new CrawURI(new URI("http://www.example.org/"), 2));
-			todo.addUrl(new CrawURI(new URI("http://www.example.org/aaa"), 10));
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		boolean bool = todo.contains(new CrawURI(new URI(
-				"http://www.example.org/"), 33333));
-		System.out.println(bool);
+
 	}
 
 	@Override

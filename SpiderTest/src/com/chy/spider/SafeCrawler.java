@@ -197,7 +197,7 @@ public class SafeCrawler {
 						} catch (URISyntaxException e1) {
 							e1.printStackTrace();
 						}
-						CrawURI nUri = new CrawURI(parsedUri, currDepth + 1);
+						CrawURI nUri = new CrawURI(parsedUri.toString(), currDepth + 1);
 
 						boolean isAccept = true;
 						for (LinkFilter f : filters) {

@@ -21,6 +21,8 @@ import com.chy.spider.utils.*;
  * @author chengyang
  * 
  */
+
+@Deprecated
 public class CopyOfCrawler {
 
 	private CrawURI seedUrl;
@@ -30,7 +32,7 @@ public class CopyOfCrawler {
 	private int maxDepth = 3;
 	private int maxVisitNum = 10;
 	private LinkFilter filter;
-//	private Object lock=new Object();
+	// private Object lock=new Object();
 
 	public LinkFilter getFilter() {
 		return filter;
@@ -100,18 +102,17 @@ public class CopyOfCrawler {
 		this(seedUrl, maxDepth);
 		this.maxVisitNum = maxVisitNum;
 		if (log.isDebugEnabled()) {
-			log.debug("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:"
-					+ this.maxDepth + " maxVisitNum:" + this.maxVisitNum);
+			log.debug("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
+					+ this.maxVisitNum);
 		}
 	}
 
-	public CopyOfCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum,
-			LinkFilter filter) {
+	public CopyOfCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum, LinkFilter filter) {
 		this(seedUrl, maxDepth, maxVisitNum);
 		this.filter = filter;
 		if (log.isDebugEnabled()) {
-			log.debug("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:"
-					+ this.maxDepth + " maxVisitNum:" + this.maxVisitNum);
+			log.debug("seedUrl:" + seedUrl.getUri().toString() + " maxDepth:" + this.maxDepth + " maxVisitNum:"
+					+ this.maxVisitNum);
 		}
 	}
 
@@ -136,14 +137,13 @@ public class CopyOfCrawler {
 
 	public void crawling(LinkFilter filter) {
 		ExecutorService execServ = Executors.newFixedThreadPool(1);
-//		synchronized (getTodo()) {
-			while (!getTodo().isEmpty()
-					&& visited.totalVisited() < getMaxVisitNum()) {
-				// visitOneUri(filter);
-				execServ.execute(new CrawlerRunner());
+		// synchronized (getTodo()) {
+		while (!getTodo().isEmpty() && visited.totalVisited() < getMaxVisitNum()) {
+			// visitOneUri(filter);
+			execServ.execute(new CrawlerRunner());
 
-			}
-//		}	
+		}
+		// }
 
 		execServ.shutdown();
 
@@ -151,39 +151,38 @@ public class CopyOfCrawler {
 
 	private void visitOneUri(LinkFilter filter) {
 
-//		synchronized (getTodo()) {
-//		CrawURI next = getTodo().getUrl();
-			CrawURI next = getTodo().removeUri();
-//			if(next!=null){
-				URI nextUri = next.getUri();
-				int currLevel = next.getDepth();
-				if (currLevel <= getMaxDepth()) {
+		// synchronized (getTodo()) {
+		// CrawURI next = getTodo().getUrl();
+		CrawURI next = getTodo().removeUri();
+		// if(next!=null){
+		URI nextUri = next.getUri();
+		int currLevel = next.getDepth();
+		if (currLevel <= getMaxDepth()) {
 
-					getVisited().addVisitedUrl(nextUri);
-					if (log.isDebugEnabled()) {
-						log.debug("visited table add uri: " + nextUri);
-					}
-					String html = PageParser.getHtmlPage(nextUri);
+			getVisited().addVisitedUrl(nextUri);
+			if (log.isDebugEnabled()) {
+				log.debug("visited table add uri: " + nextUri);
+			}
+			String html = PageParser.getHtmlPage(nextUri);
 
-					List<URI> list = PageParser.parseWebPage(html);
-					Iterator<URI> it = list.iterator();
-					while (it.hasNext()) {
-						URI parseduri = nextUri.resolve(it.next());
-						CrawURI nUri = new CrawURI(parseduri, currLevel + 1);
-						if (!getVisited().contains(parseduri)
-								&& !getTodo().contains(nUri)
-								&& filter.accept(parseduri.toString())) {
-							getTodo().addUrl(nUri);
-							// if(log.isDebugEnabled()){
-							// log.debug("todo table add uri: "+parseduri);
-							// }
-						}
-					}
-					
+			List<URI> list = PageParser.parseWebPage(html);
+			Iterator<URI> it = list.iterator();
+			while (it.hasNext()) {
+				URI parseduri = nextUri.resolve(it.next());
+				CrawURI nUri = new CrawURI(parseduri.toString(), currLevel + 1);
+				if (!getVisited().contains(parseduri) && !getTodo().contains(nUri)
+						&& filter.accept(parseduri.toString())) {
+					getTodo().addUrl(nUri);
+					// if(log.isDebugEnabled()){
+					// log.debug("todo table add uri: "+parseduri);
+					// }
 				}
-//			}
-//			getTodo().removeUri();
-//		}
+			}
+
+		}
+		// }
+		// getTodo().removeUri();
+		// }
 
 	}
 
@@ -194,13 +193,11 @@ public class CopyOfCrawler {
 	public static void main(String[] args) {
 
 		CrawURI seed = null;
-		try {
-			seed = new CrawURI(new URI("http://home.dcits.com"));
-			// new URI("https://www.zhihu.com/question/26488686"));
-			// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+
+		seed = new CrawURI("http://home.dcits.com");
+		// new URI("https://www.zhihu.com/question/26488686"));
+		// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
+
 		LinkFilter filter = new StartWithFilter("http://home.dcits.com");
 		CopyOfCrawler crawler = new CopyOfCrawler(seed, 5, 1, filter);
 		crawler.start();
@@ -211,12 +208,12 @@ public class CopyOfCrawler {
 
 	private class CrawlerRunner implements Runnable {
 
-//		private Crawler crawler;
-//
-//		//
-//		public CrawlerRunner(Crawler crawler) {
-//			this.crawler = crawler;
-//		}
+		// private Crawler crawler;
+		//
+		// //
+		// public CrawlerRunner(Crawler crawler) {
+		// this.crawler = crawler;
+		// }
 
 		@Override
 		public void run() {
