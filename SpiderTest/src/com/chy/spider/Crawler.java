@@ -182,7 +182,7 @@ public class Crawler {
 			if (currLevel <= getMaxDepth()) {
 
 				synchronized (this) {
-					getVisited().addVisitedUrl(nextUri);
+					getVisited().addVisitedUrl(next);
 				}
 
 				if (log.isInfoEnabled()) {
@@ -203,7 +203,7 @@ public class Crawler {
 						URI parseduri = nextUri.resolve(it.next());
 						CrawURI nUri = new CrawURI(parseduri.toString(), currLevel + 1);
 						synchronized (this) {
-							if (!getVisited().contains(parseduri) && !getTodo().contains(nUri)
+							if (!getVisited().contains(nUri) && !getTodo().contains(nUri)
 									&& filter.accept(parseduri.toString()) && (currLevel + 1) < getMaxDepth()) {
 								getTodo().addUrl(nUri);
 

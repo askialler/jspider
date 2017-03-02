@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 
 import com.chy.spider.config.Config;
 import com.chy.spider.filter.LinkFilter;
+import com.chy.spider.model.impls.QueueHandler;
+import com.chy.spider.model.interfaces.CrawleHandler;
 import com.chy.spider.utils.*;
 
 /**
@@ -26,11 +28,10 @@ import com.chy.spider.utils.*;
  */
 public class SafeCrawler {
 
+	private CrawleHandler handler;
 	private CrawURI seedUrl;
-	private static SafeTodoQueue todo;
-	private static VisitedQueue visited;
-	private static Logger logger=LoggerFactory.getLogger(SafeCrawler.class);
-//	private static Log log = LogFactory.getLog(SafeCrawler.class);
+	private static Logger logger = LoggerFactory.getLogger(SafeCrawler.class);
+	// private static Log log = LogFactory.getLog(SafeCrawler.class);
 	private int maxDepth = 3;
 	private int maxVisitNum = 10;
 	private List<LinkFilter> filters;
@@ -59,14 +60,6 @@ public class SafeCrawler {
 
 	public void setMaxDepth(int maxDepth) {
 		this.maxDepth = maxDepth;
-	}
-
-	public static SafeTodoQueue getTodo() {
-		return todo;
-	}
-
-	public static VisitedQueue getVisited() {
-		return visited;
 	}
 
 	public CrawURI getSeedURI() {
@@ -117,14 +110,9 @@ public class SafeCrawler {
 	 */
 	public SafeCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum, List<LinkFilter> filters) {
 
-		todo = new SafeTodoQueue();
-		visited = new VisitedQueue();
 		this.seedUrl = seedUrl;
-		try {
-			todo.addUrl(seedUrl);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		handler = new QueueHandler(seedUrl);
+
 		this.maxDepth = maxDepth;
 		this.maxVisitNum = maxVisitNum;
 		this.filters = filters;
@@ -147,9 +135,8 @@ public class SafeCrawler {
 
 	public void crawling(List<LinkFilter> filters) {
 
-		while (visited.totalVisited() < getMaxVisitNum()) {
+		while (handler.totalVisited() < getMaxVisitNum()) {
 			visitOneUri(filters);
-			// !getTodo().isEmpty() &&
 		}
 
 	}
@@ -158,22 +145,18 @@ public class SafeCrawler {
 		boolean ret = false;
 		CrawURI next = null;
 
-		try {
-			// get next uri from todo table
-			next = getTodo().removeUri();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		// get next uri from todo table
+		next = handler.removeTodo();
 
 		if (next != null) {
 			URI nextUri = next.getUri();
 			int currDepth = next.getDepth();
 			if (currDepth <= getMaxDepth()) {
 
-				getVisited().addVisitedUrl(nextUri);
+				handler.addVisited(next);
 
 				if (logger.isInfoEnabled()) {
-					logger.info("visited table add uri(" + currDepth + "): " + nextUri);
+					logger.info("visited table add: " + next.toString());
 				}
 				String html = PageParser.getHtmlPage(nextUri);
 				if (logger.isDebugEnabled()) {
@@ -191,9 +174,8 @@ public class SafeCrawler {
 						// resolve方法将URI解析成绝对路径
 						URI parsedUri = nextUri.resolve(it.next());
 						// 去掉url片段标识(#frag)
-						URIBuilder ub=new URIBuilder(parsedUri);
 						try {
-							parsedUri=ub.setFragment(null).build();
+							parsedUri = new URIBuilder(parsedUri).setFragment(null).build();
 						} catch (URISyntaxException e1) {
 							e1.printStackTrace();
 						}
@@ -204,13 +186,9 @@ public class SafeCrawler {
 							isAccept = isAccept && f.accept(parsedUri.toString());
 						}
 
-						if (!SafeCrawler.getVisited().contains(parsedUri) && !SafeCrawler.getTodo().contains(nUri)
-								&& isAccept) {
-							try {
-								SafeCrawler.getTodo().addUrl(nUri);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
+						if (!handler.visitedContains(nUri) && !handler.todoContains(nUri) && isAccept) {
+
+							handler.addTodo(nUri);
 
 						}
 					}
@@ -230,20 +208,21 @@ public class SafeCrawler {
 	 */
 	public static void main(String[] args) {
 
-//		CrawURI seed = null;
-//		try {
-//			seed = new CrawURI(new URI("http://mebook.cc/"));
-//			// new URI("https://www.zhihu.com/question/26488686"));
-//			// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
-//		} catch (URISyntaxException e) {
-//			e.printStackTrace();
-//		}
-//		// LinkFilter filter = new StartWithFilter("http://mebook.cc/");
-//		LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
-//		SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter2);
-//		crawler.start();
-//
-//		log.info("main-Thread is done ..............................................");
+		// CrawURI seed = null;
+		// try {
+		// seed = new CrawURI(new URI("http://mebook.cc/"));
+		// // new URI("https://www.zhihu.com/question/26488686"));
+		// // new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
+		// } catch (URISyntaxException e) {
+		// e.printStackTrace();
+		// }
+		// // LinkFilter filter = new StartWithFilter("http://mebook.cc/");
+		// LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
+		// SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter2);
+		// crawler.start();
+		//
+		// log.info("main-Thread is done
+		// ..............................................");
 
 	}
 
@@ -268,9 +247,9 @@ public class SafeCrawler {
 		@Override
 		public void run() {
 
-			while (SafeCrawler.getVisited().totalVisited() < getMaxVisitNum() && !isEnd()) {
+			while (handler.totalVisited() < getMaxVisitNum() && !isEnd()) {
 				boolean ret = crawler.visitOneUri(crawler.getFilters());
-				if (!ret && SafeCrawler.todo.isEmpty()) {
+				if (!ret && handler.isEmpty()) {
 					setEnd();
 				}
 

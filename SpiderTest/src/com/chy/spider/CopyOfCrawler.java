@@ -159,7 +159,7 @@ public class CopyOfCrawler {
 		int currLevel = next.getDepth();
 		if (currLevel <= getMaxDepth()) {
 
-			getVisited().addVisitedUrl(nextUri);
+			getVisited().addVisitedUrl(next);
 			if (log.isDebugEnabled()) {
 				log.debug("visited table add uri: " + nextUri);
 			}
@@ -169,13 +169,11 @@ public class CopyOfCrawler {
 			Iterator<URI> it = list.iterator();
 			while (it.hasNext()) {
 				URI parseduri = nextUri.resolve(it.next());
+				
 				CrawURI nUri = new CrawURI(parseduri.toString(), currLevel + 1);
-				if (!getVisited().contains(parseduri) && !getTodo().contains(nUri)
+				if (!getVisited().contains(nUri) && !getTodo().contains(nUri)
 						&& filter.accept(parseduri.toString())) {
 					getTodo().addUrl(nUri);
-					// if(log.isDebugEnabled()){
-					// log.debug("todo table add uri: "+parseduri);
-					// }
 				}
 			}
 
