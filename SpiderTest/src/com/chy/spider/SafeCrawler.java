@@ -1,5 +1,7 @@
 package com.chy.spider;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
@@ -19,6 +21,8 @@ import com.chy.spider.filter.LinkFilter;
 import com.chy.spider.model.impls.QueueHandler;
 import com.chy.spider.model.interfaces.CrawleHandler;
 import com.chy.spider.utils.*;
+
+import sun.org.mozilla.javascript.internal.GeneratedClassLoader;
 
 /**
  * web spider main class
@@ -111,7 +115,30 @@ public class SafeCrawler {
 	public SafeCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum, List<LinkFilter> filters) {
 
 		this.seedUrl = seedUrl;
-		handler = new QueueHandler(seedUrl);
+		
+		try {
+			
+			try {
+				Class<?> clazz=Class.forName(Config.handlerImpl);
+				Constructor<?> cons= clazz.getConstructor(CrawURI.class);
+				handler=(CrawleHandler)cons.newInstance(seedUrl);
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+//		handler = new QueueHandler(seedUrl);
 
 		this.maxDepth = maxDepth;
 		this.maxVisitNum = maxVisitNum;
