@@ -34,9 +34,10 @@ public class StartCrawler {
 			// new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
 			List<LinkFilter> list=Robots.parseRobots(new URI(seedUri+"robots.txt"));
 			list.add(new StartWithFilter("http://mebook.cc/"));
-			list.add(new NotStartWithFilter("http://mebook.cc/category"));
+//			list.add(new NotStartWithFilter("http://mebook.cc/category"));
+			list.add(new NotStartWithFilter("http://mebook.cc/sitemap.html"));
 			long begin=System.currentTimeMillis();
-			SafeCrawler crawler = new SafeCrawler(seed, 10, 5, list);
+			SafeCrawler crawler = new SafeCrawler(seed, 10, 10, list);
 			long end=System.currentTimeMillis();
 			logger.info("waste time:"+(end-begin));
 			crawler.start();

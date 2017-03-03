@@ -32,11 +32,16 @@ public class MybatisTest {
 
 			try {
 				TodoMapper mapper = session.getMapper(TodoMapper.class);
-				CrawURI uri = mapper.getCrawURI(1);
-				CrawURI uri1=new CrawURI("http://www.sina.com/", 2);
-				logger.info(uri.toString());
-				mapper.insertCrawURI( uri);
-//				mapper.insertCrawURI( "http://mebook.cc/", "aaaaaaaaa", 4);
+				CrawURI uri = mapper.getTodoByMD5("aaaabbbbccc1234");
+//				CrawURI uri1=new CrawURI("http://www.sina.com/", 2);
+//				mapper.addTodoCrawURI(new CrawURI("http://www.example.org/todo", 5));
+//				mapper.addVisitedCrawURI(new CrawURI("http://www.example.org/visited", 6));
+//				mapper.deleteTodoCrawURI("aaabbb");
+				int totalTodo=mapper.getTodoTotal();
+				int totalVisited=mapper.getVisitedTotal();
+//				CrawURI uri=mapper.get1stTodoCrawURI();
+				logger.info("getTodoTotal: "+totalTodo+", getVisitedTotal: "+totalVisited);
+				logger.info(uri==null?"Null":uri.toString());
 				session.commit();
 
 			} finally {

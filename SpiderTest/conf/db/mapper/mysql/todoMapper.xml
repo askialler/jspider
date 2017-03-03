@@ -15,19 +15,38 @@
        See the License for the specific language governing permissions and
        limitations under the License.
 
--->
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     -->
+     <!DOCTYPE mapper
+     PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+     'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+     <mapper namespace="com.chy.spider.db.mapper.TodoMapper">
+      <select id="getTodoByMD5" parameterType="String" resultType="CrawURI">
+        select uri,md5,depth from todoqueue where md5 = #{md5}
+      </select>
+      <select id="getVisitedByMD5" parameterType="String" resultType="CrawURI">
+        select uri,md5,depth from visitedqueue where md5 = #{md5}
+      </select>
+      <select id="get1stTodoCrawURI" resultType="CrawURI">
+        select uri,md5,depth from todoqueue limit 1
+      </select>
+      <select id="getVisitedTotal" resultType="int">
+        select count(*) from visitedqueue
+      </select>
+      <select id="getTodoTotal" resultType="int">
+        select count(*) from todoqueue
+      </select>
+      <insert id="addTodoCrawURI" keyProperty="id" parameterType="CrawURI"
+        flushCache="true" useGeneratedKeys="true">
+        insert into todoqueue(uri,md5,depth) values( #{uri},#{md5},#{depth})
+      </insert>
+      <insert id="addVisitedCrawURI" keyProperty="id" parameterType="CrawURI"
+        flushCache="true" useGeneratedKeys="true">
+        insert into visitedqueue(uri,md5,depth) values( #{uri},#{md5},#{depth})
+      </insert>
+      <delete id="deleteTodoCrawURI" flushCache="true" parameterType="String">
+        delete from todoqueue where md5 = #{md5}
+      </delete>
 
-<mapper namespace="com.chy.spider.db.mapper.TodoMapper">
-
-	<select id="getCrawURI" parameterType="int" resultType="CrawURI">
-		select uri,md5,depth from todoqueue where id = #{id}
-	</select>
-
-	<insert id="insertCrawURI"  parameterType="CrawURI" useGeneratedKeys="true" keyProperty="id" >
-		insert into todoqueue(uri,md5,depth) values( #{uri},#{md5},#{depth})
-	</insert>
-
-</mapper>
+      <!-- <cache/> -->
+      
+    </mapper>

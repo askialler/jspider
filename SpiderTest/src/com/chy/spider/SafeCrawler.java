@@ -115,13 +115,13 @@ public class SafeCrawler {
 	public SafeCrawler(CrawURI seedUrl, int maxDepth, int maxVisitNum, List<LinkFilter> filters) {
 
 		this.seedUrl = seedUrl;
-		
+
 		try {
-			
+
 			try {
-				Class<?> clazz=Class.forName(Config.handlerImpl);
-				Constructor<?> cons= clazz.getConstructor(CrawURI.class);
-				handler=(CrawleHandler)cons.newInstance(seedUrl);
+				Class<?> clazz = Class.forName(Config.handlerImpl);
+				Constructor<?> cons = clazz.getConstructor(CrawURI.class);
+				handler = (CrawleHandler) cons.newInstance(seedUrl);
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
@@ -138,7 +138,7 @@ public class SafeCrawler {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-//		handler = new QueueHandler(seedUrl);
+		// handler = new QueueHandler(seedUrl);
 
 		this.maxDepth = maxDepth;
 		this.maxVisitNum = maxVisitNum;
@@ -157,16 +157,42 @@ public class SafeCrawler {
 			execServ.execute(runners[i]);
 		}
 		execServ.shutdown();
+		boolean end = false;
 
-	}
+		while (!end) {
+			short wait = 0;
+			for (int i = 0; i < runners.length; i++) {
+				wait += runners[i].isWait();
+			}
+			
+			boolean tmp=true;
+			for (int i = 0; i < runners.length; i++) {
+				tmp = tmp && runners[i].isEnd();
+			}
+			end=tmp;
+			
+			if (wait == runners.length) {
+				end = true;
+			} else {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 
-	public void crawling(List<LinkFilter> filters) {
 
-		while (handler.totalVisited() < getMaxVisitNum()) {
-			visitOneUri(filters);
 		}
 
 	}
+
+	// public void crawling(List<LinkFilter> filters) {
+	//
+	// while (handler.totalVisited() < getMaxVisitNum()) {
+	// visitOneUri(filters);
+	// }
+	//
+	// }
 
 	private boolean visitOneUri(List<LinkFilter> filters) {
 		boolean ret = false;
@@ -214,8 +240,8 @@ public class SafeCrawler {
 						}
 
 						if (!handler.visitedContains(nUri) && !handler.todoContains(nUri) && isAccept) {
-
 							handler.addTodo(nUri);
+							logger.info("add todo uri: " + nUri);
 
 						}
 					}
@@ -229,34 +255,13 @@ public class SafeCrawler {
 		return ret;
 	}
 
-	/**
-	 * @param args
-	 * @throws URISyntaxException
-	 */
-	public static void main(String[] args) {
-
-		// CrawURI seed = null;
-		// try {
-		// seed = new CrawURI(new URI("http://mebook.cc/"));
-		// // new URI("https://www.zhihu.com/question/26488686"));
-		// // new URI("http://zhuanlan.zhihu.com/100offer/19788061"));
-		// } catch (URISyntaxException e) {
-		// e.printStackTrace();
-		// }
-		// // LinkFilter filter = new StartWithFilter("http://mebook.cc/");
-		// LinkFilter filter2 = new RegexFilter("http://mebook.cc/.*");
-		// SafeCrawler crawler = new SafeCrawler(seed, 5, 30, filter2);
-		// crawler.start();
-		//
-		// log.info("main-Thread is done
-		// ..............................................");
-
-	}
-
 	private class CrawlerRunner implements Runnable {
 
+		//TODO change to Callble
+		
 		private SafeCrawler crawler;
 		private boolean endFlag = false;
+		private short waitFlag = 0;
 
 		public void setEnd() {
 			endFlag = true;
@@ -264,6 +269,18 @@ public class SafeCrawler {
 
 		public boolean isEnd() {
 			return endFlag;
+		}
+
+		public void setWait() {
+			waitFlag = 1;
+		}
+
+		public void cancelWait() {
+			waitFlag = 0;
+		}
+
+		public short isWait() {
+			return waitFlag;
 		}
 
 		//
@@ -274,10 +291,20 @@ public class SafeCrawler {
 		@Override
 		public void run() {
 
-			while (handler.totalVisited() < getMaxVisitNum() && !isEnd()) {
+			while (!isEnd()) {
 				boolean ret = crawler.visitOneUri(crawler.getFilters());
-				if (!ret && handler.isEmpty()) {
+				if (handler.totalVisited() >= getMaxVisitNum()) {
 					setEnd();
+				}
+				if (!ret && handler.isEmpty()) {
+					setWait();
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				} else {
+					cancelWait();
 				}
 
 			}
