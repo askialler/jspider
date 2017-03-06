@@ -66,6 +66,10 @@ public class CrawURI {
 		return "CrawURI[url: "+this.uri+", md5: "+this.md5+", depth:"+this.depth+"]";
 	}
 	
+	@Override
+	public int hashCode() {
+		return md5.hashCode();
+	}
 
 	
 }
