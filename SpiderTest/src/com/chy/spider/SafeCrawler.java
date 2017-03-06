@@ -72,7 +72,7 @@ public class SafeCrawler {
 
 	public SafeCrawler(CrawURI seedUrl) {
 
-		this(seedUrl, Config.DefaultMaxDepth, Config.DefaultMaxVisitNum, new LinkedList<LinkFilter>());
+		this(seedUrl, Config.DEFAULT_MAX_DEPTH, Config.DEFAULT_MAX_VISIT_NUM, new LinkedList<LinkFilter>());
 
 		new LinkFilter() {
 			@Override
@@ -84,7 +84,7 @@ public class SafeCrawler {
 
 	public SafeCrawler(CrawURI seedUrl, int maxDepth) {
 
-		this(seedUrl, maxDepth, Config.DefaultMaxVisitNum, new LinkedList<LinkFilter>());
+		this(seedUrl, maxDepth, Config.DEFAULT_MAX_VISIT_NUM, new LinkedList<LinkFilter>());
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class SafeCrawler {
 		try {
 
 			try {
-				Class<?> clazz = Class.forName(Config.handlerImpl);
+				Class<?> clazz = Class.forName(Config.HANDLER_IMPL);
 				Constructor<?> cons = clazz.getConstructor(CrawURI.class);
 				handler = (CrawleHandler) cons.newInstance(seedUrl);
 			} catch (SecurityException e) {

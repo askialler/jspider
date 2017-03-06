@@ -44,6 +44,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.chy.spider.config.Config;
+
 public class PageParser {
 
 	private static HttpClient client;
@@ -52,7 +54,10 @@ public class PageParser {
 
 	public static HttpClient getHttpClient() {
 		
-		HttpHost proxy = new HttpHost("10.126.3.161", 3128,"http");
+		HttpHost proxy = null;
+		if(Config.USE_PROXY){
+			proxy = new HttpHost("10.126.3.161", 3128,"http");
+		}
 		
 		SSLContext sslCxt = null;
 		try {
