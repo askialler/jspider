@@ -39,6 +39,7 @@ public class SafeCrawler {
 	private int maxDepth = 3;
 	private int maxVisitNum = 10;
 	private List<LinkFilter> filters;
+	private int threadCount=3;
 
 	// private Object lock=new Object();
 
@@ -73,7 +74,7 @@ public class SafeCrawler {
 	public SafeCrawler(CrawURI seedUrl) {
 
 		this(seedUrl, Config.DEFAULT_MAX_DEPTH, Config.DEFAULT_MAX_VISIT_NUM, new LinkedList<LinkFilter>());
-
+		this.threadCount=Config.CRAWLER_THREADS;
 		new LinkFilter() {
 			@Override
 			public boolean accept(String uri) {
@@ -150,9 +151,9 @@ public class SafeCrawler {
 	}
 
 	public void start() {
-		CrawlerRunner[] runners = new CrawlerRunner[5];
-		ExecutorService execServ = Executors.newFixedThreadPool(5);
-		for (int i = 0; i < 5; i++) {
+		CrawlerRunner[] runners = new CrawlerRunner[threadCount];
+		ExecutorService execServ = Executors.newFixedThreadPool(threadCount);
+		for (int i = 0; i < threadCount; i++) {
 			runners[i] = new CrawlerRunner(this);
 			execServ.execute(runners[i]);
 		}
