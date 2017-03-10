@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
@@ -40,6 +41,16 @@ public class SafeCrawler {
 	private int maxVisitNum = 10;
 	private List<LinkFilter> filters;
 	private int threadCount=3;
+	
+	private boolean canceled=false;
+	
+	public boolean isCanceled(){
+		return canceled;
+	}
+	
+	public void cancel(){
+		canceled=true;
+	}
 
 	// private Object lock=new Object();
 
